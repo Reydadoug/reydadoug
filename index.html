@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reydadoug · Tu tienda en Madrid, online gratis</title>
+  <title>TuEscaparate · Tu tienda en Madrid, online gratis</title>
   <meta name="description" content="Consigue una web profesional para tu negocio en Madrid sin pagar ni un euro. Kit Digital: hasta 12.000€ del gobierno para digitalizar tu comercio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
@@ -293,13 +293,13 @@
     .cta-section form { max-width: 440px; margin: 0 auto; }
     .cta-section input {
       width: 100%; padding: 16px 20px; border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.15); margin-bottom: 12px;
       font-size: 15px; font-family: inherit;
-      background: rgba(255,255,255,0.06); color: #fff;
+      background: rgba(0,0,0,0.35); color: #fff;
       outline: none; transition: border-color 0.2s;
     }
-    .cta-section input:focus { border-color: #e8593b; }
-    .cta-section input::placeholder { color: #7a708a; }
+    .cta-section input:focus { border-color: #e8593b; background: rgba(0,0,0,0.5); }
+    .cta-section input::placeholder { color: #9a8aaa; }
     .cta-section button {
       width: 100%; padding: 16px; border-radius: 10px;
       border: none; font-size: 16px; font-weight: 600;
@@ -350,7 +350,7 @@
 <!-- ============ NAV ============ -->
 <nav>
   <div class="container">
-    <a href="#" class="logo">reydadoug<span>.</span></a>
+    <a href="#" class="logo">TuEscaparate</a>
     <div>
       <a href="#como">Cómo funciona</a>
       <a href="#kit">Kit Digital</a>
@@ -478,7 +478,7 @@
 <section>
   <div class="container">
     <div class="label">Antes y después</div>
-    <h2 class="section-title">Sin nosotros vs. Con Reydadoug</h2>
+    <h2 class="section-title">Sin nosotros vs. Con TuEscaparate</h2>
     <p class="section-sub">
       No es solo tener una web. Es tener una web que funcione y te traiga clientes.
     </p>
@@ -495,7 +495,7 @@
         </ul>
       </div>
       <div class="comp-card good">
-        <h3>✅ Con Reydadoug</h3>
+        <h3>✅ Con TuEscaparate</h3>
         <ul>
           <li>Diseño adaptado a móvil y desktop</li>
           <li>Google Maps + SEO local activado</li>
@@ -674,7 +674,7 @@
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
-    reydadoug &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital
+    TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital
   </div>
 </footer>
 
@@ -690,7 +690,7 @@
       const data = new FormData(this);
       data.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
       data.append('subject', 'Nuevo lead desde la web');
-      data.append('from_name', 'Reydadoug Web');
+      data.append('from_name', 'TuEscaparate');
 
       try {
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
