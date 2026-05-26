@@ -15,8 +15,7 @@ Los emails están listos en la carpeta `reydadoug/`:
 
 1. Abre cada archivo .txt y copia el contenido
 2. Pégalo en un nuevo correo en Gmail
-3. **Antes de enviar**, reemplaza `[TU TELÉFONO]` con tu número
-4. Envía
+3. Envía
 
 ## Los que no tienen email (Cuchillería Viñas, Don Pedro)
 
