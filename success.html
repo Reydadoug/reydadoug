@@ -10,7 +10,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4e 50%, #24243e 100%);
+      background: linear-gradient(165deg, #1a1a2e 0%, #2d1f3d 40%, #1a1a2e 100%);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -20,26 +20,30 @@
       padding: 24px;
     }
     .card { max-width: 480px; }
-    .check { font-size: 64px; margin-bottom: 20px; }
-    h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
-    p { color: #b0b0c8; font-size: 17px; margin-bottom: 32px; line-height: 1.6; }
+    .check {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(232,89,59,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 40px;
+    }
+    h1 { font-size: 34px; font-weight: 800; margin-bottom: 12px; }
+    p { color: #b0a8c0; font-size: 17px; margin-bottom: 36px; line-height: 1.6; }
     a {
       display: inline-block;
-      background: #6c63ff;
-      color: #fff;
-      font-weight: 600;
-      padding: 14px 32px;
-      border-radius: 8px;
-      text-decoration: none;
+      background: #e8593b; color: #fff;
+      font-weight: 600; padding: 14px 32px;
+      border-radius: 10px; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(232,89,59,0.35);
     }
-    a:hover { background: #5a52e0; }
+    a:hover { background: #d44a2e; }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="check">✅</div>
     <h1>¡Recibido!</h1>
-    <p>Te escribo pronto para contarte cómo conseguimos tu web gratis con el Kit Digital.</p>
+    <p>Te escribimos pronto para contarte cómo conseguimos tu web gratis con el Kit Digital.</p>
     <a href="/reydadoug/">Volver</a>
   </div>
 </body>

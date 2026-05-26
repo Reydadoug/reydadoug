@@ -4,265 +4,506 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reydadoug · Tu tienda en Madrid, online gratis</title>
-  <meta name="description" content="Consigue una web profesional para tu negocio en Madrid sin pagar ni un euro. Subvención Kit Digital de hasta 12.000€." />
+  <meta name="description" content="Consigue una web profesional para tu negocio en Madrid sin pagar ni un euro. Kit Digital: hasta 12.000€ del gobierno para digitalizar tu comercio." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       color: #1a1a2e;
-      background: #f8f9fa;
+      background: #fff;
       line-height: 1.6;
     }
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    /* --- Hero --- */
+    /* ============ NAV ============ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 16px 0;
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-weight: 800; font-size: 20px; color: #1a1a2e; text-decoration: none; }
+    .logo span { color: #e8593b; }
+    nav a:not(.logo) {
+      font-size: 14px; font-weight: 500; color: #555;
+      text-decoration: none; margin-left: 24px;
+    }
+    nav a:hover { color: #e8593b; }
+
+    /* ============ HERO ============ */
     .hero {
-      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4e 50%, #24243e 100%);
+      padding: 140px 0 100px;
+      background: linear-gradient(165deg, #1a1a2e 0%, #2d1f3d 40%, #1a1a2e 100%);
       color: #fff;
-      padding: 80px 0 100px;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -30%; right: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(232,89,59,0.12) 0%, transparent 60%);
     }
     .hero::after {
-      content: '';
-      position: absolute;
-      top: -50%; right: -20%;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
-      pointer-events: none;
+      content: ''; position: absolute;
+      bottom: -20%; left: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,183,77,0.08) 0%, transparent 50%);
     }
     .hero .container { position: relative; z-index: 1; }
     .hero-badge {
-      display: inline-block;
-      background: rgba(108,99,255,0.25);
-      border: 1px solid rgba(108,99,255,0.4);
-      color: #b8b2ff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 24px;
-      letter-spacing: 0.3px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      color: #fbbf7c; font-size: 13px; font-weight: 600;
+      padding: 8px 18px; border-radius: 20px; margin-bottom: 28px;
     }
+    .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; display: inline-block; }
+    .hero-grid { display: flex; gap: 60px; align-items: center; }
+    .hero-content { flex: 1; }
     .hero h1 {
-      font-size: 52px;
-      font-weight: 800;
-      line-height: 1.1;
-      max-width: 700px;
-      margin-bottom: 20px;
+      font-size: 56px; font-weight: 800; line-height: 1.08;
+      margin-bottom: 20px; letter-spacing: -0.5px;
     }
-    .hero h1 span { color: #a8a0ff; }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #fbbf7c, #e8593b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
     .hero p {
-      font-size: 19px;
-      color: #c4c4d6;
-      max-width: 580px;
-      margin-bottom: 36px;
+      font-size: 18px; color: #b8b0c8;
+      max-width: 520px; margin-bottom: 36px; line-height: 1.7;
     }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       font-weight: 600; font-size: 16px;
-      padding: 14px 32px; border-radius: 8px;
-      text-decoration: none; cursor: pointer;
-      transition: all 0.2s;
+      padding: 16px 32px; border-radius: 10px;
+      text-decoration: none; transition: all 0.2s;
     }
     .btn-primary {
-      background: #6c63ff;
-      color: #fff;
-      border: none;
+      background: #e8593b; color: #fff; border: none;
+      box-shadow: 0 4px 20px rgba(232,89,59,0.35);
     }
-    .btn-primary:hover { background: #5a52e0; transform: translateY(-1px); }
+    .btn-primary:hover { background: #d44a2e; transform: translateY(-2px); }
     .btn-secondary {
-      background: transparent;
-      color: #c4c4d6;
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06); color: #c8c0d8;
+      border: 1px solid rgba(255,255,255,0.15);
     }
-    .btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
-    .hero-stats {
-      display: flex; gap: 48px; margin-top: 60px;
-      padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .hero-stats div { text-align: center; }
-    .hero-stats strong {
-      display: block; font-size: 28px; font-weight: 700;
-      color: #a8a0ff;
-    }
-    .hero-stats span { font-size: 13px; color: #8a8aa8; }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
 
-    /* --- Sections --- */
-    section { padding: 80px 0; }
-    section:nth-child(even) { background: #fff; }
-    .section-label {
-      font-size: 13px; font-weight: 600; letter-spacing: 1px;
-      color: #6c63ff; text-transform: uppercase; margin-bottom: 12px;
+    .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; }
+    .phone-mock {
+      width: 260px; height: 520px;
+      background: linear-gradient(180deg, #2d1f3d, #1a1a2e);
+      border-radius: 32px; border: 3px solid rgba(255,255,255,0.1);
+      padding: 16px 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .phone-mock .status-bar { display: flex; justify-content: space-between; padding: 0 4px 12px; font-size: 11px; color: #888; }
+    .phone-mock .screen {
+      background: #fff; border-radius: 16px; height: calc(100% - 30px);
+      padding: 20px 16px; display: flex; flex-direction: column; gap: 10px;
+    }
+    .phone-mock .screen .bar { height: 12px; background: #e8e0f0; border-radius: 6px; }
+    .phone-mock .screen .bar-sm { height: 10px; width: 60%; background: #e8e0f0; border-radius: 6px; }
+    .phone-mock .screen .bar-accent { height: 12px; width: 40%; background: #e8593b; border-radius: 6px; }
+    .phone-mock .screen .circle-row { display: flex; gap: 8px; }
+    .phone-mock .screen .circle { width: 40px; height: 40px; background: #f0e8f8; border-radius: 50%; }
+    .phone-mock .screen .row { display: flex; gap: 8px; }
+    .phone-mock .screen .row .half { flex: 1; height: 50px; background: #f5f0fa; border-radius: 8px; }
+    .hero-stats-row {
+      display: flex; gap: 40px; margin-top: 48px;
+      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-stats-row div { }
+    .hero-stats-row strong {
+      display: block; font-size: 24px; font-weight: 700;
+      background: linear-gradient(135deg, #fbbf7c, #e8593b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stats-row span { font-size: 13px; color: #7a708a; }
+
+    /* ============ TRUST BAR ============ */
+    .trust-bar {
+      background: #faf8fc; padding: 24px 0;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+    .trust-bar p { font-size: 12px; color: #999; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .trust-bar .logos { display: flex; justify-content: center; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .trust-bar .logos span {
+      font-size: 14px; font-weight: 600; color: #aaa;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .trust-bar .logos span .flag { font-size: 20px; }
+
+    /* ============ SECTIONS ============ */
+    section { padding: 90px 0; }
+    section:nth-child(even) { background: #faf8fc; }
+    .label {
+      font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+      color: #e8593b; text-transform: uppercase; margin-bottom: 12px;
     }
     .section-title {
-      font-size: 34px; font-weight: 700; margin-bottom: 16px;
-      line-height: 1.2;
+      font-size: 36px; font-weight: 800; margin-bottom: 16px;
+      line-height: 1.15; letter-spacing: -0.3px;
     }
     .section-sub {
       font-size: 17px; color: #666; max-width: 600px; margin-bottom: 48px;
     }
 
-    /* --- Problems --- */
-    .problems-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* ============ PAIN POINTS ============ */
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .pain-card {
+      background: #fff; border-radius: 14px; padding: 28px;
+      border: 1px solid #eee; position: relative;
+      transition: all 0.2s;
+    }
+    .pain-card:hover { border-color: #ddd; transform: translateY(-2px); }
+    .pain-card .icon { font-size: 32px; margin-bottom: 14px; }
+    .pain-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .pain-card p { font-size: 14px; color: #777; line-height: 1.5; }
+
+    /* ============ COMPARISON ============ */
+    .comparison-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .comp-card {
+      border-radius: 16px; padding: 36px 32px;
+      border: 1px solid #eee;
+    }
+    .comp-card.bad { background: #fff5f5; border-color: #ffd4d4; }
+    .comp-card.good { background: #f0faf0; border-color: #b8e6b8; }
+    .comp-card h3 { font-size: 20px; margin-bottom: 16px; }
+    .comp-card.bad h3 { color: #d63031; }
+    .comp-card.good h3 { color: #27ae60; }
+    .comp-card ul { list-style: none; }
+    .comp-card li {
+      padding: 8px 0; font-size: 15px; color: #555;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .comp-card.bad li::before { content: '✗'; color: #d63031; font-weight: 700; }
+    .comp-card.good li::before { content: '✓'; color: #27ae60; font-weight: 700; }
+
+    /* ============ SOLUTION ============ */
+    .solution-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
-    .problem-card {
-      background: #f8f9fa; border-radius: 12px; padding: 28px;
-      border-left: 3px solid #ff6b6b;
+    .sol-card {
+      background: #fff; border-radius: 14px; padding: 28px 20px;
+      text-align: center; border: 1px solid #eee;
+      transition: all 0.2s;
     }
-    .problem-card .icon { font-size: 28px; margin-bottom: 12px; }
-    .problem-card h3 { font-size: 17px; margin-bottom: 8px; }
-    .problem-card p { font-size: 14px; color: #666; }
+    .sol-card:hover { border-color: #ddd; transform: translateY(-3px); }
+    .sol-card .icon { font-size: 34px; margin-bottom: 14px; }
+    .sol-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .sol-card p { font-size: 13px; color: #777; line-height: 1.5; }
 
-    /* --- Solution --- */
-    .solution-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-    }
-    .solution-card {
-      background: #f8f9fa; border-radius: 12px; padding: 32px 24px;
-      text-align: center; transition: transform 0.2s;
-    }
-    .solution-card:hover { transform: translateY(-2px); }
-    .solution-card .icon { font-size: 36px; margin-bottom: 16px; }
-    .solution-card h3 { font-size: 17px; margin-bottom: 8px; }
-    .solution-card p { font-size: 14px; color: #666; }
-
-    /* --- How it works --- */
-    .steps { counter-reset: step; }
-    .step {
-      display: flex; gap: 24px; padding: 24px 0;
-      border-bottom: 1px solid #eee;
-    }
-    .step:last-child { border-bottom: none; }
-    .step-num {
-      counter-increment: step;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: #6c63ff; color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 18px; flex-shrink: 0;
-    }
-    .step h3 { font-size: 18px; margin-bottom: 4px; }
-    .step p { font-size: 15px; color: #666; }
-
-    /* --- Kit Digital --- */
+    /* ============ KIT DIGITAL ============ */
     .kit-box {
-      background: linear-gradient(135deg, #f0eeff 0%, #e8e6ff 100%);
-      border-radius: 16px; padding: 48px;
+      background: linear-gradient(135deg, #1a1a2e, #2d1f3d);
+      border-radius: 20px; padding: 56px 48px;
       display: flex; flex-wrap: wrap; gap: 40px;
       align-items: center; justify-content: space-between;
-    }
-    .kit-box h3 { font-size: 24px; margin-bottom: 12px; }
-    .kit-box p { color: #444; max-width: 500px; }
-    .kit-amount {
-      font-size: 48px; font-weight: 800; color: #6c63ff;
-      white-space: nowrap;
-    }
-    .kit-amount small { font-size: 16px; font-weight: 500; color: #666; }
-
-    /* --- CTA --- */
-    .cta {
-      text-align: center; padding: 100px 0;
-      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4e 50%, #24243e 100%);
       color: #fff;
     }
-    .cta h2 { font-size: 38px; margin-bottom: 16px; }
-    .cta p { color: #b0b0c8; max-width: 500px; margin: 0 auto 36px; }
+    .kit-box h3 { font-size: 28px; font-weight: 700; margin-bottom: 14px; }
+    .kit-box p { color: #b8b0c8; max-width: 480px; line-height: 1.6; }
+    .kit-box .badge-row { display: flex; gap: 12px; margin-top: 20px; }
+    .kit-box .badge-row span {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 14px; border-radius: 8px; font-size: 12px; color: #c8c0d8;
+    }
+    .kit-amount {
+      text-align: center;
+    }
+    .kit-amount .num {
+      font-size: 56px; font-weight: 800;
+      background: linear-gradient(135deg, #fbbf7c, #e8593b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .kit-amount .label { color: #8a7a9a; font-size: 14px; letter-spacing: 0; text-transform: none; }
 
-    /* --- Footer --- */
-    footer {
-      padding: 32px 0; text-align: center;
-      font-size: 13px; color: #999;
+    /* ============ HOW IT WORKS ============ */
+    .steps { counter-reset: step; display: flex; gap: 24px; }
+    .step {
+      flex: 1; background: #fff; border-radius: 14px;
+      padding: 32px 24px; border: 1px solid #eee;
+      position: relative; text-align: center;
+    }
+    .step-num {
+      counter-increment: step;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: #e8593b; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 20px; margin: 0 auto 16px;
+    }
+    .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .step p { font-size: 14px; color: #777; line-height: 1.5; }
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonial-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .test-card {
+      background: #fff; border-radius: 14px; padding: 28px;
+      border: 1px solid #eee;
+    }
+    .test-card .stars { color: #f59e0b; font-size: 16px; margin-bottom: 12px; }
+    .test-card blockquote {
+      font-size: 15px; color: #555; line-height: 1.6;
+      margin-bottom: 16px; font-style: italic;
+    }
+    .test-card .author { font-size: 13px; color: #999; }
+    .test-card .author strong { color: #333; }
+
+    /* ============ SHOPS ============ */
+    .shops-grid {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    }
+    .shop-tag {
+      background: #fff; border: 1px solid #e0dce8;
+      padding: 10px 22px; border-radius: 30px;
+      font-size: 15px; font-weight: 500;
+      display: flex; align-items: center; gap: 8px;
+      transition: all 0.2s;
+    }
+    .shop-tag:hover { border-color: #e8593b; background: #fef5f2; }
+
+    /* ============ CTA ============ */
+    .cta-section {
+      text-align: center; padding: 100px 0;
+      background: linear-gradient(165deg, #1a1a2e 0%, #2d1f3d 50%, #1a1a2e 100%);
+      color: #fff;
+    }
+    .cta-section h2 { font-size: 40px; font-weight: 800; margin-bottom: 14px; letter-spacing: -0.3px; }
+    .cta-section p { color: #b0a8c0; max-width: 480px; margin: 0 auto 32px; }
+    .cta-section form { max-width: 440px; margin: 0 auto; }
+    .cta-section input {
+      width: 100%; padding: 16px 20px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px;
+      font-size: 15px; font-family: inherit;
+      background: rgba(255,255,255,0.06); color: #fff;
+      outline: none; transition: border-color 0.2s;
+    }
+    .cta-section input:focus { border-color: #e8593b; }
+    .cta-section input::placeholder { color: #7a708a; }
+    .cta-section button {
+      width: 100%; padding: 16px; border-radius: 10px;
+      border: none; font-size: 16px; font-weight: 600;
+      background: #e8593b; color: #fff; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(232,89,59,0.35);
+      transition: all 0.2s;
+    }
+    .cta-section button:hover { background: #d44a2e; transform: translateY(-1px); }
+
+    /* ============ FLOATING BAR ============ */
+    .floating-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-top: 1px solid #eee;
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    .floating-bar p { font-size: 14px; font-weight: 600; color: #333; }
+    .floating-bar p small { font-weight: 400; color: #999; display: block; font-size: 12px; }
+    .floating-bar a {
+      background: #e8593b; color: #fff; text-decoration: none;
+      padding: 12px 28px; border-radius: 10px; font-weight: 600; font-size: 14px;
+      white-space: nowrap;
     }
 
-    /* --- Responsive --- */
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 32px; }
-      .hero-stats { gap: 24px; flex-wrap: wrap; }
-      .hero-stats strong { font-size: 22px; }
-      .section-title { font-size: 26px; }
-      .kit-box { padding: 28px; }
-      .kit-amount { font-size: 32px; }
-      .cta h2 { font-size: 28px; }
+    /* ============ FOOTER ============ */
+    footer { padding: 32px 0; text-align: center; font-size: 13px; color: #999; margin-bottom: 60px; }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 900px) {
+      .hero-grid { flex-direction: column; gap: 40px; }
+      .hero h1 { font-size: 36px; }
+      .hero-visual { display: none; }
+      .section-title { font-size: 28px; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .steps { flex-direction: column; }
+      .kit-box { padding: 32px 24px; }
+      .kit-amount .num { font-size: 40px; }
+      .hero-stats-row { gap: 24px; }
+      nav a:not(.logo) { display: none; }
+      .floating-bar p small { display: none; }
     }
   </style>
 </head>
 <body>
 
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="container">
+    <a href="#" class="logo">reydadoug<span>.</span></a>
+    <div>
+      <a href="#como">Cómo funciona</a>
+      <a href="#kit">Kit Digital</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
 <!-- ============ HERO ============ -->
 <header class="hero">
   <div class="container">
-    <div class="hero-badge">&#9679; Subvención Kit Digital disponible</div>
-    <h1>Tu tienda en Madrid,<br><span>online gratis.</span></h1>
-    <p>
-      Consigue una web profesional para tu negocio sin pagar ni un euro.
-      El gobierno subvenciona hasta 12.000€. Yo gestiono todo el papeleo y te la construyo.
-    </p>
-    <div class="hero-actions">
-      <a href="#contacto" class="btn btn-primary">Quiero mi web gratis →</a>
-      <a href="#como-funciona" class="btn btn-secondary">Cómo funciona</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <strong>12.000€</strong>
-        <span>Subvención máxima</span>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Fondos Next Generation UE — Plazos abiertos
+        </div>
+        <h1>Tu negocio en Madrid,<br><span class="highlight">online sin pagar nada.</span></h1>
+        <p>
+          El gobierno te da hasta 12.000€ para digitalizar tu comercio. 
+          Nosotros te construimos la web y gestionamos todo el papeleo. 
+          <strong>Sin coste para ti.</strong>
+        </p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn btn-primary">Quiero mi web gratis →</a>
+          <a href="#como" class="btn btn-secondary">Ver cómo funciona</a>
+        </div>
+        <div class="hero-stats-row">
+          <div>
+            <strong>12.000€</strong>
+            <span>Subvención máxima</span>
+          </div>
+          <div>
+            <strong>0€</strong>
+            <span>Para tu bolsillo</span>
+          </div>
+          <div>
+            <strong>7 días</strong>
+            <span>Tu web online</span>
+          </div>
+        </div>
       </div>
-      <div>
-        <strong>0€</strong>
-        <span>Para tu negocio</span>
-      </div>
-      <div>
-        <strong>1 semana</strong>
-        <span>Tu web lista</span>
+      <div class="hero-visual">
+        <div class="phone-mock">
+          <div class="status-bar">
+            <span>9:41</span>
+            <span>📶 🔋</span>
+          </div>
+          <div class="screen">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#e8593b;"></div>
+              <div style="flex:1;"><div class="bar" style="width:60%;"></div><div class="bar-sm" style="width:40%;margin-top:4px;"></div></div>
+            </div>
+            <div class="bar-accent"></div>
+            <div class="circle-row"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+            <div class="row"><div class="half"></div><div class="half"></div></div>
+            <div class="row"><div class="half"></div><div class="half"></div></div>
+            <div class="bar" style="width:80%;"></div>
+            <div class="bar-sm"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ============ PROBLEMS ============ -->
-<section id="problemas">
+<!-- ============ TRUST BAR ============ -->
+<div class="trust-bar">
   <div class="container">
-    <div class="section-label">¿Te suena?</div>
-    <h2 class="section-title">Si tienes un negocio en Madrid y …</h2>
+    <p>Programa oficial del gobierno de España</p>
+    <div class="logos">
+      <span><span class="flag">🇪🇸</span> Gobierno de España</span>
+      <span><span class="flag">🇪🇺</span> Next Generation EU</span>
+      <span>Kit Digital</span>
+      <span>Red.es</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAIN POINTS ============ -->
+<section>
+  <div class="container">
+    <div class="label">¿Te suena?</div>
+    <h2 class="section-title">Duele, ¿verdad?</h2>
     <p class="section-sub">
-      La mayoría de pequeños comercios tienen los mismos problemas con su presencia online.
+      La mayoría de pequeños comercios de Madrid tienen estos mismos problemas. 
+      No eres el único, pero puedes ser de los que lo solucionan.
     </p>
-    <div class="problems-grid">
-      <div class="problem-card">
+    <div class="pain-grid">
+      <div class="pain-card">
         <div class="icon">📱</div>
-        <h3>Tu web no se ve bien en móvil</h3>
-        <p>El 70% de tus clientes te buscan desde el teléfono. Si tu web no carga bien, pierdes ventas.</p>
+        <h3>No te ven en el móvil</h3>
+        <p>El 70% de tus clientes te busca desde el teléfono. Si no apareces bien, se van a la competencia.</p>
       </div>
-      <div class="problem-card">
+      <div class="pain-card">
         <div class="icon">🔍</div>
-        <h3>No apareces en Google</h3>
-        <p>Te buscaron y no te encontraron. Sin posicionamiento local, los clientes se van a la competencia.</p>
+        <h3>No existes en Google</h3>
+        <p>Te buscan por tu barrio y no sales. Sin Google Maps ni SEO local, eres invisible.</p>
       </div>
-      <div class="problem-card">
-        <div class="icon">⏳</div>
-        <h3>Tu web es muy lenta</h3>
-        <p>Las webs baratas de Fiverr o Wix cargan en 6-8 segundos. Si tarda más de 3, pierdes al 40% de visitas.</p>
+      <div class="pain-card">
+        <div class="icon">🐌</div>
+        <h3>Tu web es lenta</h3>
+        <p>Las webs baratas cargan en 6-8 segundos. Si tardas más de 3, pierdes al 40% de los visitantes.</p>
       </div>
-      <div class="problem-card">
+      <div class="pain-card">
         <div class="icon">💸</div>
-        <h3>Gastaste dinero y no recibes llamadas</h3>
-        <p>Pagar 500€ por una web no sirve de nada si nadie la encuentra. Necesitas SEO y estrategia real.</p>
+        <h3>Pagaste y no pasó nada</h3>
+        <p>Gastaste 500€ en una web de Fiverr o Wix y ahora nadie te llama. No era una web, era un adorno.</p>
       </div>
-      <div class="problem-card">
-        <div class="icon">📸</div>
-        <h3>Se ve anticuada o genérica</h3>
-        <p>El 40% de los comercios tienen una web que parece de 2015. Tus clientes notan cuando algo se ve "barato".</p>
+      <div class="pain-card">
+        <div class="icon">📦</div>
+        <h3>Parece de 2015</h3>
+        <p>El 40% de los comercios tienen una web anticuada. Tus clientes notan cuándo algo se ve "barato".</p>
       </div>
-      <div class="problem-card">
-        <div class="icon">📋</div>
+      <div class="pain-card">
+        <div class="icon">😫</div>
         <h3>No sabes por dónde empezar</h3>
-        <p>Entre el papeleo, el diseño y el mantenimiento, muchos dueños dejan la web para "otro día".</p>
+        <p>Entre el papeleo, el diseño y el mantenimiento, siempre lo dejas para "otro día". Ese día es hoy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARISON ============ -->
+<section>
+  <div class="container">
+    <div class="label">Antes y después</div>
+    <h2 class="section-title">Sin nosotros vs. Con Reydadoug</h2>
+    <p class="section-sub">
+      No es solo tener una web. Es tener una web que funcione y te traiga clientes.
+    </p>
+    <div class="comparison-grid">
+      <div class="comp-card bad">
+        <h3>❌ Sin nosotros</h3>
+        <ul>
+          <li>Web que no se ve en móvil</li>
+          <li>No apareces en Google Maps</li>
+          <li>Carga en 8 segundos</li>
+          <li>Diseño genérico de plantilla</li>
+          <li>Sin soporte ni mantenimiento</li>
+          <li>Pagaste y nadie te llama</li>
+        </ul>
+      </div>
+      <div class="comp-card good">
+        <h3>✅ Con Reydadoug</h3>
+        <ul>
+          <li>Diseño adaptado a móvil y desktop</li>
+          <li>Google Maps + SEO local activado</li>
+          <li>Carga en menos de 2 segundos</li>
+          <li>Diseño único para tu tipo de negocio</li>
+          <li>Te enseñamos a gestionarlo tú mismo</li>
+          <li>Gratis gracias al Kit Digital</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -271,158 +512,169 @@
 <!-- ============ SOLUTION ============ -->
 <section>
   <div class="container">
-    <div class="section-label">La solución</div>
-    <h2 class="section-title">Lo que incluye tu web gratis</h2>
+    <div class="label">Todo incluido</div>
+    <h2 class="section-title">Esto es lo que te llevas</h2>
     <p class="section-sub">
-      Todo lo necesario para que tu negocio tenga presencia profesional en internet.
+      Sin letra pequeña. Todo lo que necesitas para tener presencia online profesional.
     </p>
     <div class="solution-grid">
-      <div class="solution-card">
+      <div class="sol-card">
         <div class="icon">🌐</div>
         <h3>Web profesional</h3>
-        <p>Diseño moderno, rápido y adaptado a móviles. Eliges entre plantillas para tu tipo de negocio.</p>
+        <p>Moderna, rápida y adaptada a móviles. Plantillas para cada tipo de negocio.</p>
       </div>
-      <div class="solution-card">
+      <div class="sol-card">
         <div class="icon">📍</div>
-        <h3>Google Business</h3>
-        <p>Te doy de alta en Google Maps y optimizo tu perfil para que aparezcas en las búsquedas locales.</p>
+        <h3>Google Maps</h3>
+        <p>Te damos de alta y optimizamos tu perfil para que te encuentren en tu barrio.</p>
       </div>
-      <div class="solution-card">
+      <div class="sol-card">
         <div class="icon">🔎</div>
-        <h3>SEO básico</h3>
-        <p>Títulos, descripciones y estructura que Google entiende. Aparecerás en las búsquedas de tu zona.</p>
+        <h3>SEO local</h3>
+        <p>Apareces cuando alguien busca "cafetería cerca de mí" o "taller en Madrid".</p>
       </div>
-      <div class="solution-card">
+      <div class="sol-card">
         <div class="icon">📊</div>
         <h3>Analytics</h3>
-        <p>Te instalo Google Analytics para que veas cuánta gente visita tu web y de dónde vienen.</p>
+        <p>Ves cuánta gente visita tu web y de dónde vienen. Sabes si funciona.</p>
       </div>
-      <div class="solution-card">
-        <div class="icon">📝</div>
-        <h3>Panel de gestión</h3>
-        <p>Puedes cambiar textos, fotos y precios tú mismo sin saber programar.</p>
+      <div class="sol-card">
+        <div class="icon">✏️</div>
+        <h3>Fácil de gestionar</h3>
+        <p>Cambias textos, fotos y precios tú mismo. Sin saber de tecnología.</p>
       </div>
-      <div class="solution-card">
+      <div class="sol-card">
         <div class="icon">⚡</div>
-        <h3>Rápida y segura</h3>
-        <p>Certificado SSL, hosting optimizado y carga en menos de 2 segundos.</p>
+        <h3>Hosting + SSL</h3>
+        <p>Rápido, seguro y con certificado SSL. Tus clientes confían al ver el candado.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ KIT DIGITAL ============ -->
-<section>
+<section id="kit">
   <div class="container">
-    <div class="section-label">Gratis gracias al Kit Digital</div>
-    <h2 class="section-title">El gobierno paga, tú te llevas la web</h2>
+    <div class="label">100% gratuito</div>
+    <h2 class="section-title">¿Qué es el Kit Digital?</h2>
+    <p class="section-sub">
+      Un programa del Gobierno de España que da bonos a autónomos y pymes para digitalizarse. 
+      Nosotros lo gestionamos por ti.
+    </p>
     <div class="kit-box">
       <div>
-        <h3>¿Qué es el Kit Digital?</h3>
+        <h3>De 2.000€ a 12.000€<br>para tu negocio</h3>
         <p>
-          Es un programa del Gobierno de España, financiado por la Unión Europea (Next Generation),
-          que da bonos de 2.000€ a 12.000€ a autónomos y pymes para digitalizarse.
+          El Kit Digital está financiado por la Unión Europea (Next Generation) 
+          y subvenciona la creación de páginas web, tiendas online, SEO y software de gestión.
         </p>
         <p style="margin-top: 12px;">
-          Yo soy agente digitalizador. Me encargo de solicitar el bono, gestionar el papeleo
-          y construir tu web. <strong>Tú no pagas nada.</strong>
+          <strong>Nosotros somos agente digitalizador.</strong> Solicitamos el bono, 
+          gestionamos el papeleo y construimos tu web. Tú solo tienes que decirnos 
+          cómo la quieres.
         </p>
+        <div class="badge-row">
+          <span>🇪🇸 Gobierno de España</span>
+          <span>🇪🇺 Next Generation EU</span>
+          <span>✓ Sin coste</span>
+        </div>
       </div>
       <div class="kit-amount">
-        12.000€ <small>máximo</small>
+        <div class="num">12.000€</div>
+        <div class="label">subvención máxima</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ HOW IT WORKS ============ -->
-<section id="como-funciona">
+<section id="como">
   <div class="container">
-    <div class="section-label">Así de sencillo</div>
-    <h2 class="section-title">Cómo conseguimos tu web gratis</h2>
-    <p class="section-sub">Tres pasos y tu negocio está online sin que muevas un dedo.</p>
+    <div class="label">Así de fácil</div>
+    <h2 class="section-title">3 pasos y tienes tu web</h2>
+    <p class="section-sub">
+      Sin complicaciones. Nosotros hacemos el trabajo pesado.
+    </p>
     <div class="steps">
       <div class="step">
-        <div class="step-num"></div>
-        <div>
-          <h3>Te registras en el Kit Digital</h3>
-          <p>Te doy el enlace y te guío. El trámite es online y tardas 5 minutos. Si no quieres hacerlo, lo hago yo por ti.</p>
-        </div>
+        <div class="step-num">1</div>
+        <h3>Te registras</h3>
+        <p>Entras en la web del Kit Digital, son 5 minutos. Si no quieres, lo hacemos nosotros por ti.</p>
       </div>
       <div class="step">
-        <div class="step-num"></div>
-        <div>
-          <h3>Eliges tu web (yo te aconsejo)</h3>
-          <p>Según tu tipo de negocio, te recomiendo la plantilla ideal. Me dices qué colores, fotos y textos quieres (o los creamos juntos).</p>
-        </div>
+        <div class="step-num">2</div>
+        <h3>Eliges tu web</h3>
+        <p>Según tu negocio, te recomendamos la mejor plantilla. Tú pones los colores y las fotos.</p>
       </div>
       <div class="step">
-        <div class="step-num"></div>
-        <div>
-          <h3>En una semana tienes tu web online</h3>
-          <p>Construyo, configuro y publico tu web. Te doy acceso para que puedas modificarla cuando quieras.</p>
-        </div>
+        <div class="step-num">3</div>
+        <h3>Lista en 7 días</h3>
+        <p>Construimos, publicamos y te damos acceso. Ya estás online.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOR WHOM ============ -->
+<!-- ============ SHOPS ============ -->
 <section>
   <div class="container">
-    <div class="section-label">Para quién es</div>
-    <h2 class="section-title">Si tienes un negocio en Madrid, esto es para ti</h2>
+    <div class="label">Para ti</div>
+    <h2 class="section-title">Cualquier negocio sirve</h2>
     <p class="section-sub">
-      Restaurantes, bares, tiendas de ropa, peluquerías, talleres, clínicas, despachos, academias…
-      cualquier negocio con pocos empleados puede acceder a la subvención.
+      Da igual lo que vendas. Si tienes un comercio en Madrid y pocos empleados, la subvención es tuya.
     </p>
-    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🍕 Restaurantes</span>
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">✂️ Peluquerías</span>
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">👕 Tiendas de ropa</span>
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🔧 Talleres</span>
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🏋️ Gimnasios</span>
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🛒 Tiendas de barrio</span>
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🏥 Clínicas</span>
-      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">📚 Academias</span>
+    <div class="shops-grid">
+      <span class="shop-tag">🍕 Restaurante</span>
+      <span class="shop-tag">✂️ Peluquería</span>
+      <span class="shop-tag">👕 Tienda de ropa</span>
+      <span class="shop-tag">🔧 Taller mecánico</span>
+      <span class="shop-tag">🏋️ Gimnasio</span>
+      <span class="shop-tag">🛒 Tienda de barrio</span>
+      <span class="shop-tag">🏥 Clínica dental</span>
+      <span class="shop-tag">📚 Academia</span>
+      <span class="shop-tag">🍞 Panadería</span>
+      <span class="shop-tag">💐 Floristería</span>
+      <span class="shop-tag">🔨 Carpintería</span>
+      <span class="shop-tag">🐾 Tienda de animales</span>
+      <span class="shop-tag">📖 Librería</span>
+      <span class="shop-tag">☕ Cafetería</span>
     </div>
   </div>
 </section>
 
 <!-- ============ CTA ============ -->
-<section class="cta" id="contacto">
+<section class="cta-section" id="contacto">
   <div class="container">
-    <h2>¿Listo para tener tu web gratis?</h2>
+    <h2>¿Cuándo empiezas?</h2>
     <p>
-      Dime qué negocio tienes y en qué zona de Madrid estás.
-      Si cumples los requisitos del Kit Digital, te hago la web sin que pagues nada.
+      Dinos qué negocio tienes y en qué zona de Madrid estás. 
+      Si cumples los requisitos, te hacemos la web sin que pagues nada.
     </p>
-    <p style="font-size: 15px; color: #b0b0c8; margin-bottom: 24px;">
-      Déjame tu correo y te explico cómo conseguimos tu web gratis:
-    </p>
-    <form id="contactForm" style="max-width: 440px; margin: 0 auto;">
-      <input type="text" name="name" placeholder="Tu nombre" required
-        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:12px; font-size:15px; font-family:inherit;">
-      <input type="email" name="email" placeholder="Tu correo" required
-        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:12px; font-size:15px; font-family:inherit;">
-      <input type="text" name="business" placeholder="¿Qué negocio tienes?" required
-        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:12px; font-size:15px; font-family:inherit;">
-      <input type="text" name="zone" placeholder="¿En qué zona de Madrid?"
-        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:20px; font-size:15px; font-family:inherit;">
-      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; border:none; cursor:pointer;">
-        Quiero mi web gratis →
-      </button>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Tu nombre y apellidos" required />
+      <input type="email" name="email" placeholder="Tu correo electrónico" required />
+      <input type="text" name="business" placeholder="¿Qué negocio tienes?" required />
+      <input type="text" name="zone" placeholder="¿En qué zona de Madrid?" />
+      <button type="submit">Sí, quiero mi web gratis →</button>
     </form>
-    <p style="font-size: 13px; color: #7a7a9a; margin-top: 16px;">
-      Sin spam. Solo te escribo para ayudarte con tu web.
+    <p style="font-size:13px;color:#7a708a;margin-top:16px;">
+      Sin spam. Solo te escribimos para ayudarte.
     </p>
   </div>
 </section>
 
+<!-- ============ FLOATING BAR ============ -->
+<div class="floating-bar">
+  <div>
+    <p>Web gratis para tu negocio <small>Hasta 12.000€ de subvención del gobierno</small></p>
+  </div>
+  <a href="#contacto">Quiero la mía →</a>
+</div>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
-    Reydadoug &mdash; Madrid &bull; 2026 &bull; Todo 100% gratuito gracias al Kit Digital
+    reydadoug &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital
   </div>
 </footer>
 
@@ -439,7 +691,6 @@
       data.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
       data.append('subject', 'Nuevo lead desde la web');
       data.append('from_name', 'Reydadoug Web');
-      data.append('redirect', 'https://reydadoug.github.io/reydadoug/success.html');
 
       try {
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
@@ -447,14 +698,14 @@
         if (json.success) {
           window.location.href = '/reydadoug/success.html';
         } else {
-          btn.textContent = 'Quiero mi web gratis →';
+          btn.textContent = 'Sí, quiero mi web gratis →';
           btn.disabled = false;
-          alert('Hubo un error. Escríbeme directamente a nifodigital@gmail.com');
+          alert('Hubo un error. Inténtalo de nuevo.');
         }
       } catch {
-        btn.textContent = 'Quiero mi web gratis →';
+        btn.textContent = 'Sí, quiero mi web gratis →';
         btn.disabled = false;
-        alert('Hubo un error. Escríbeme a nifodigital@gmail.com');
+        alert('Hubo un error. Inténtalo de nuevo.');
       }
     });
   }
