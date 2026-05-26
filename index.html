@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NIFO Digital · Tu tienda en Madrid, online gratis</title>
+  <meta name="description" content="Consigue una web profesional para tu negocio en Madrid sin pagar ni un euro. Subvención Kit Digital de hasta 12.000€." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: #1a1a2e;
+      background: #f8f9fa;
+      line-height: 1.6;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* --- Hero --- */
+    .hero {
+      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4e 50%, #24243e 100%);
+      color: #fff;
+      padding: 80px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(108,99,255,0.25);
+      border: 1px solid rgba(108,99,255,0.4);
+      color: #b8b2ff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.1;
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: #a8a0ff; }
+    .hero p {
+      font-size: 19px;
+      color: #c4c4d6;
+      max-width: 580px;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 600; font-size: 16px;
+      padding: 14px 32px; border-radius: 8px;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #6c63ff;
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover { background: #5a52e0; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: #c4c4d6;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .hero-stats {
+      display: flex; gap: 48px; margin-top: 60px;
+      padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stats div { text-align: center; }
+    .hero-stats strong {
+      display: block; font-size: 28px; font-weight: 700;
+      color: #a8a0ff;
+    }
+    .hero-stats span { font-size: 13px; color: #8a8aa8; }
+
+    /* --- Sections --- */
+    section { padding: 80px 0; }
+    section:nth-child(even) { background: #fff; }
+    .section-label {
+      font-size: 13px; font-weight: 600; letter-spacing: 1px;
+      color: #6c63ff; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 34px; font-weight: 700; margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 17px; color: #666; max-width: 600px; margin-bottom: 48px;
+    }
+
+    /* --- Problems --- */
+    .problems-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .problem-card {
+      background: #f8f9fa; border-radius: 12px; padding: 28px;
+      border-left: 3px solid #ff6b6b;
+    }
+    .problem-card .icon { font-size: 28px; margin-bottom: 12px; }
+    .problem-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .problem-card p { font-size: 14px; color: #666; }
+
+    /* --- Solution --- */
+    .solution-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .solution-card {
+      background: #f8f9fa; border-radius: 12px; padding: 32px 24px;
+      text-align: center; transition: transform 0.2s;
+    }
+    .solution-card:hover { transform: translateY(-2px); }
+    .solution-card .icon { font-size: 36px; margin-bottom: 16px; }
+    .solution-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .solution-card p { font-size: 14px; color: #666; }
+
+    /* --- How it works --- */
+    .steps { counter-reset: step; }
+    .step {
+      display: flex; gap: 24px; padding: 24px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      counter-increment: step;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: #6c63ff; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 18px; flex-shrink: 0;
+    }
+    .step h3 { font-size: 18px; margin-bottom: 4px; }
+    .step p { font-size: 15px; color: #666; }
+
+    /* --- Kit Digital --- */
+    .kit-box {
+      background: linear-gradient(135deg, #f0eeff 0%, #e8e6ff 100%);
+      border-radius: 16px; padding: 48px;
+      display: flex; flex-wrap: wrap; gap: 40px;
+      align-items: center; justify-content: space-between;
+    }
+    .kit-box h3 { font-size: 24px; margin-bottom: 12px; }
+    .kit-box p { color: #444; max-width: 500px; }
+    .kit-amount {
+      font-size: 48px; font-weight: 800; color: #6c63ff;
+      white-space: nowrap;
+    }
+    .kit-amount small { font-size: 16px; font-weight: 500; color: #666; }
+
+    /* --- CTA --- */
+    .cta {
+      text-align: center; padding: 100px 0;
+      background: linear-gradient(135deg, #0f0c29 0%, #1a1a4e 50%, #24243e 100%);
+      color: #fff;
+    }
+    .cta h2 { font-size: 38px; margin-bottom: 16px; }
+    .cta p { color: #b0b0c8; max-width: 500px; margin: 0 auto 36px; }
+
+    /* --- Footer --- */
+    footer {
+      padding: 32px 0; text-align: center;
+      font-size: 13px; color: #999;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .hero-stats strong { font-size: 22px; }
+      .section-title { font-size: 26px; }
+      .kit-box { padding: 28px; }
+      .kit-amount { font-size: 32px; }
+      .cta h2 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-badge">&#9679; Subvención Kit Digital disponible</div>
+    <h1>Tu tienda en Madrid,<br><span>online gratis.</span></h1>
+    <p>
+      Consigue una web profesional para tu negocio sin pagar ni un euro.
+      El gobierno subvenciona hasta 12.000€. Yo gestiono todo el papeleo y te la construyo.
+    </p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-primary">Quiero mi web gratis →</a>
+      <a href="#como-funciona" class="btn btn-secondary">Cómo funciona</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <strong>12.000€</strong>
+        <span>Subvención máxima</span>
+      </div>
+      <div>
+        <strong>0€</strong>
+        <span>Para tu negocio</span>
+      </div>
+      <div>
+        <strong>1 semana</strong>
+        <span>Tu web lista</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PROBLEMS ============ -->
+<section id="problemas">
+  <div class="container">
+    <div class="section-label">¿Te suena?</div>
+    <h2 class="section-title">Si tienes un negocio en Madrid y …</h2>
+    <p class="section-sub">
+      La mayoría de pequeños comercios tienen los mismos problemas con su presencia online.
+    </p>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="icon">📱</div>
+        <h3>Tu web no se ve bien en móvil</h3>
+        <p>El 70% de tus clientes te buscan desde el teléfono. Si tu web no carga bien, pierdes ventas.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🔍</div>
+        <h3>No apareces en Google</h3>
+        <p>Te buscaron y no te encontraron. Sin posicionamiento local, los clientes se van a la competencia.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⏳</div>
+        <h3>Tu web es muy lenta</h3>
+        <p>Las webs baratas de Fiverr o Wix cargan en 6-8 segundos. Si tarda más de 3, pierdes al 40% de visitas.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <h3>Gastaste dinero y no recibes llamadas</h3>
+        <p>Pagar 500€ por una web no sirve de nada si nadie la encuentra. Necesitas SEO y estrategia real.</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📸</div>
+        <h3>Se ve anticuada o genérica</h3>
+        <p>El 40% de los comercios tienen una web que parece de 2015. Tus clientes notan cuando algo se ve "barato".</p>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📋</div>
+        <h3>No sabes por dónde empezar</h3>
+        <p>Entre el papeleo, el diseño y el mantenimiento, muchos dueños dejan la web para "otro día".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUTION ============ -->
+<section>
+  <div class="container">
+    <div class="section-label">La solución</div>
+    <h2 class="section-title">Lo que incluye tu web gratis</h2>
+    <p class="section-sub">
+      Todo lo necesario para que tu negocio tenga presencia profesional en internet.
+    </p>
+    <div class="solution-grid">
+      <div class="solution-card">
+        <div class="icon">🌐</div>
+        <h3>Web profesional</h3>
+        <p>Diseño moderno, rápido y adaptado a móviles. Eliges entre plantillas para tu tipo de negocio.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon">📍</div>
+        <h3>Google Business</h3>
+        <p>Te doy de alta en Google Maps y optimizo tu perfil para que aparezcas en las búsquedas locales.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon">🔎</div>
+        <h3>SEO básico</h3>
+        <p>Títulos, descripciones y estructura que Google entiende. Aparecerás en las búsquedas de tu zona.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon">📊</div>
+        <h3>Analytics</h3>
+        <p>Te instalo Google Analytics para que veas cuánta gente visita tu web y de dónde vienen.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon">📝</div>
+        <h3>Panel de gestión</h3>
+        <p>Puedes cambiar textos, fotos y precios tú mismo sin saber programar.</p>
+      </div>
+      <div class="solution-card">
+        <div class="icon">⚡</div>
+        <h3>Rápida y segura</h3>
+        <p>Certificado SSL, hosting optimizado y carga en menos de 2 segundos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KIT DIGITAL ============ -->
+<section>
+  <div class="container">
+    <div class="section-label">Gratis gracias al Kit Digital</div>
+    <h2 class="section-title">El gobierno paga, tú te llevas la web</h2>
+    <div class="kit-box">
+      <div>
+        <h3>¿Qué es el Kit Digital?</h3>
+        <p>
+          Es un programa del Gobierno de España, financiado por la Unión Europea (Next Generation),
+          que da bonos de 2.000€ a 12.000€ a autónomos y pymes para digitalizarse.
+        </p>
+        <p style="margin-top: 12px;">
+          Yo soy agente digitalizador. Me encargo de solicitar el bono, gestionar el papeleo
+          y construir tu web. <strong>Tú no pagas nada.</strong>
+        </p>
+      </div>
+      <div class="kit-amount">
+        12.000€ <small>máximo</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-label">Así de sencillo</div>
+    <h2 class="section-title">Cómo conseguimos tu web gratis</h2>
+    <p class="section-sub">Tres pasos y tu negocio está online sin que muevas un dedo.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h3>Te registras en el Kit Digital</h3>
+          <p>Te doy el enlace y te guío. El trámite es online y tardas 5 minutos. Si no quieres hacerlo, lo hago yo por ti.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h3>Eliges tu web (yo te aconsejo)</h3>
+          <p>Según tu tipo de negocio, te recomiendo la plantilla ideal. Me dices qué colores, fotos y textos quieres (o los creamos juntos).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div>
+          <h3>En una semana tienes tu web online</h3>
+          <p>Construyo, configuro y publico tu web. Te doy acceso para que puedas modificarla cuando quieras.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOR WHOM ============ -->
+<section>
+  <div class="container">
+    <div class="section-label">Para quién es</div>
+    <h2 class="section-title">Si tienes un negocio en Madrid, esto es para ti</h2>
+    <p class="section-sub">
+      Restaurantes, bares, tiendas de ropa, peluquerías, talleres, clínicas, despachos, academias…
+      cualquier negocio con pocos empleados puede acceder a la subvención.
+    </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🍕 Restaurantes</span>
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">✂️ Peluquerías</span>
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">👕 Tiendas de ropa</span>
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🔧 Talleres</span>
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🏋️ Gimnasios</span>
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🛒 Tiendas de barrio</span>
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">🏥 Clínicas</span>
+      <span style="background: #f0eeff; padding: 8px 20px; border-radius: 20px; font-size: 15px; font-weight: 500;">📚 Academias</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contacto">
+  <div class="container">
+    <h2>¿Listo para tener tu web gratis?</h2>
+    <p>
+      Dime qué negocio tienes y en qué zona de Madrid estás.
+      Si cumples los requisitos del Kit Digital, te hago la web sin que pagues nada.
+    </p>
+    <p style="font-size: 15px; color: #b0b0c8; margin-bottom: 24px;">
+      Déjame tu correo y te explico cómo conseguimos tu web gratis:
+    </p>
+    <form id="contactForm" style="max-width: 440px; margin: 0 auto;">
+      <input type="text" name="name" placeholder="Tu nombre" required
+        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:12px; font-size:15px; font-family:inherit;">
+      <input type="email" name="email" placeholder="Tu correo" required
+        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:12px; font-size:15px; font-family:inherit;">
+      <input type="text" name="business" placeholder="¿Qué negocio tienes?" required
+        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:12px; font-size:15px; font-family:inherit;">
+      <input type="text" name="zone" placeholder="¿En qué zona de Madrid?"
+        style="width:100%; padding:14px 18px; border-radius:8px; border:none; margin-bottom:20px; font-size:15px; font-family:inherit;">
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; border:none; cursor:pointer;">
+        Quiero mi web gratis →
+      </button>
+    </form>
+    <p style="font-size: 13px; color: #7a7a9a; margin-top: 16px;">
+      Sin spam. Solo te escribo para ayudarte con tu web.
+    </p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    NIFO Digital &mdash; Madrid &bull; 2026 &bull; Todo 100% gratuito gracias al Kit Digital
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      btn.textContent = 'Enviando…';
+      btn.disabled = true;
+
+      const data = new FormData(this);
+      data.append('access_key', 'REEMPLAZA_CON_TU_KEY_DE_WEB3FORMS');
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+        const json = await res.json();
+        if (json.success) {
+          this.innerHTML = '<p style="color:#6c63ff;font-weight:600;font-size:18px;">¡Listo! Te escribo pronto. ✅</p>';
+        } else {
+          btn.textContent = 'Quiero mi web gratis →';
+          btn.disabled = false;
+          alert('Hubo un error. Escríbeme directamente a nifodigital@gmail.com');
+        }
+      } catch {
+        btn.textContent = 'Quiero mi web gratis →';
+        btn.disabled = false;
+        alert('Hubo un error. Escríbeme a nifodigital@gmail.com');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
