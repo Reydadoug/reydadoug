@@ -1,0 +1,8 @@
+# Archivos sensibles (solo locales)
+leads/
+email_*.txt
+COMO_ENVIAR.md
+pitch.md
+
+# Sistema
+.DS_Store
