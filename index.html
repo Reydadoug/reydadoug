@@ -437,12 +437,15 @@
 
       const data = new FormData(this);
       data.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
+      data.append('subject', 'Nuevo lead desde la web');
+      data.append('from_name', 'Reydadoug Web');
+      data.append('redirect', 'https://reydadoug.github.io/reydadoug/success.html');
 
       try {
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
         const json = await res.json();
         if (json.success) {
-          this.innerHTML = '<p style="color:#6c63ff;font-weight:600;font-size:18px;">¡Listo! Te escribo pronto. ✅</p>';
+          window.location.href = '/reydadoug/success.html';
         } else {
           btn.textContent = 'Quiero mi web gratis →';
           btn.disabled = false;
