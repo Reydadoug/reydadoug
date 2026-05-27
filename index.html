@@ -132,6 +132,35 @@
     }
     .nav-links a:hover { color: var(--primary); background: var(--toggle-bg); }
 
+    /* ============ LANGUAGE SELECTOR ============ */
+    .lang-selector { position: relative; margin-left: 4px; }
+    .lang-toggle {
+      background: var(--toggle-bg); border: 1px solid var(--toggle-border);
+      border-radius: 8px; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 18px; padding: 0; line-height: 1;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .lang-toggle:hover { background: var(--toggle-hover); border-color: var(--primary); transform: scale(1.08); }
+    .lang-dropdown {
+      position: absolute; top: calc(100% + 6px); right: 0; z-index: 200;
+      background: var(--card-bg); border: 1px solid var(--card-border);
+      border-radius: 10px; padding: 6px; min-width: 170px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+      display: none;
+      opacity: 0; transform: translateY(-4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .lang-dropdown.open { display: block; opacity: 1; transform: translateY(0); }
+    .lang-opt {
+      display: flex; align-items: center; gap: 8px;
+      width: 100%; padding: 8px 12px; border: none; border-radius: 6px;
+      background: none; color: var(--text); font-size: 14px;
+      cursor: pointer; font-family: inherit; transition: background 0.15s;
+    }
+    .lang-opt:hover { background: var(--toggle-bg); }
+    .lang-opt.active { background: var(--toggle-bg); color: var(--primary); font-weight: 600; }
+
     /* ============ DARK MODE TOGGLE ============ */
     .theme-toggle {
       background: var(--toggle-bg); border: 1px solid var(--toggle-border);
@@ -522,11 +551,23 @@
   <div class="container">
     <a href="#" class="logo">TuEscaparate</a>
     <div class="nav-links">
-      <a href="#servicios">Servicios</a>
-      <a href="#como">Cómo funciona</a>
-      <a href="#kit">Kit Digital</a>
-      <a href="#contacto">Contacto</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro">
+      <a href="#servicios" data-i18n="nav.services">Servicios</a>
+      <a href="#como" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#kit" data-i18n="nav.kit">Kit Digital</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      <div class="lang-selector">
+        <button class="lang-toggle" id="langToggle">🌐</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button data-lang="es" class="lang-opt active">🇪🇸 Español</button>
+          <button data-lang="en-us" class="lang-opt">🇺🇸 English</button>
+          <button data-lang="en-gb" class="lang-opt">🇬🇧 English (UK)</button>
+          <button data-lang="fr" class="lang-opt">🇫🇷 Français</button>
+          <button data-lang="de" class="lang-opt">🇩🇪 Deutsch</button>
+          <button data-lang="zh" class="lang-opt">🇨🇳 中文</button>
+          <button data-lang="ja" class="lang-opt">🇯🇵 日本語</button>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle" data-i18n="theme.aria" aria-label="Cambiar modo oscuro">
         <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
@@ -544,32 +585,32 @@
   <div class="container">
     <div class="hero-grid">
       <div class="hero-content">
-        <div class="hero-badge">
+        <div class="hero-badge" data-i18n="hero.badge">
           <span class="dot"></span>
           Fondos Next Generation UE — Plazos abiertos
         </div>
-        <h1>Tu negocio en Madrid,<br><span class="highlight">al día sin pagar nada.</span></h1>
-        <p>
+        <h1 data-i18n="hero.title">Tu negocio en Madrid,<br><span class="highlight">al día sin pagar nada.</span></h1>
+        <p data-i18n="hero.subtitle">
           El gobierno te da hasta 12.000€ para digitalizar tu comercio. 
           Te hacemos la web, optimizamos tu Google Business y automatizamos
           tus tareas diarias. <strong>Todo sin coste o desde 150€.</strong>
         </p>
         <div class="hero-actions">
-          <a href="#contacto" class="btn btn-primary">Empieza gratis →</a>
-          <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+          <a href="#contacto" class="btn btn-primary" data-i18n="hero.cta_primary">Empieza gratis →</a>
+          <a href="#servicios" class="btn btn-secondary" data-i18n="hero.cta_secondary">Ver servicios</a>
         </div>
         <div class="hero-stats-row">
           <div>
-            <strong>12.000€</strong>
-            <span>Subvención máxima</span>
+            <strong data-i18n="hero.stat1_value">12.000€</strong>
+            <span data-i18n="hero.stat1_label">Subvención máxima</span>
           </div>
           <div>
-            <strong>0€</strong>
-            <span>Para tu bolsillo</span>
+            <strong data-i18n="hero.stat2_value">0€</strong>
+            <span data-i18n="hero.stat2_label">Para tu bolsillo</span>
           </div>
           <div>
-            <strong>7 días</strong>
-            <span>Tu web online</span>
+            <strong data-i18n="hero.stat3_value">7 días</strong>
+            <span data-i18n="hero.stat3_label">Tu web online</span>
           </div>
         </div>
       </div>
@@ -600,11 +641,11 @@
 <!-- ============ TRUST BAR ============ -->
 <div class="trust-bar">
   <div class="container">
-    <p>Programa oficial del gobierno de España</p>
+    <p data-i18n="trust.text">Programa oficial del gobierno de España</p>
     <div class="logos">
-      <span><span class="flag">🇪🇸</span> Gobierno de España</span>
-      <span><span class="flag">🇪🇺</span> Next Generation EU</span>
-      <span>Kit Digital</span>
+      <span><span class="flag">🇪🇸</span> <span data-i18n="trust.span1">Gobierno de España</span></span>
+      <span><span class="flag">🇪🇺</span> <span data-i18n="trust.span2">Next Generation EU</span></span>
+      <span data-i18n="trust.span3">Kit Digital</span>
       <span>Red.es</span>
     </div>
   </div>
@@ -613,42 +654,42 @@
 <!-- ============ PAIN POINTS ============ -->
 <section>
   <div class="container">
-    <div class="label">¿Te suena?</div>
-    <h2 class="section-title">Duele, ¿verdad?</h2>
-    <p class="section-sub">
+    <div class="label" data-i18n="pain.label">¿Te suena?</div>
+    <h2 class="section-title" data-i18n="pain.title">Duele, ¿verdad?</h2>
+    <p class="section-sub" data-i18n="pain.subtitle">
       La mayoría de pequeños comercios de Madrid tienen estos mismos problemas. 
       No eres el único, pero puedes ser de los que lo solucionan.
     </p>
     <div class="pain-grid">
       <div class="pain-card">
         <div class="icon">📱</div>
-        <h3>No te ven en el móvil</h3>
-        <p>El 70% de tus clientes te busca desde el teléfono. Si no apareces bien, se van a la competencia.</p>
+        <h3 data-i18n="pain.card1_title">No te ven en el móvil</h3>
+        <p data-i18n="pain.card1_text">El 70% de tus clientes te busca desde el teléfono. Si no apareces bien, se van a la competencia.</p>
       </div>
       <div class="pain-card">
         <div class="icon">🔍</div>
-        <h3>No existes en Google</h3>
-        <p>Te buscan por tu barrio y no sales. Sin Google Maps ni SEO local, eres invisible.</p>
+        <h3 data-i18n="pain.card2_title">No existes en Google</h3>
+        <p data-i18n="pain.card2_text">Te buscan por tu barrio y no sales. Sin Google Maps ni SEO local, eres invisible.</p>
       </div>
       <div class="pain-card">
         <div class="icon">🐌</div>
-        <h3>Tu web es lenta</h3>
-        <p>Las webs baratas cargan en 6-8 segundos. Si tardas más de 3, pierdes al 40% de los visitantes.</p>
+        <h3 data-i18n="pain.card3_title">Tu web es lenta</h3>
+        <p data-i18n="pain.card3_text">Las webs baratas cargan en 6-8 segundos. Si tardas más de 3, pierdes al 40% de los visitantes.</p>
       </div>
       <div class="pain-card">
         <div class="icon">💸</div>
-        <h3>Pagaste y no pasó nada</h3>
-        <p>Gastaste 500€ en una web de Fiverr o Wix y ahora nadie te llama. No era una web, era un adorno.</p>
+        <h3 data-i18n="pain.card4_title">Pagaste y no pasó nada</h3>
+        <p data-i18n="pain.card4_text">Gastaste 500€ en una web de Fiverr o Wix y ahora nadie te llama. No era una web, era un adorno.</p>
       </div>
       <div class="pain-card">
         <div class="icon">📦</div>
-        <h3>Parece de 2015</h3>
-        <p>El 40% de los comercios tienen una web anticuada. Tus clientes notan cuándo algo se ve "barato".</p>
+        <h3 data-i18n="pain.card5_title">Parece de 2015</h3>
+        <p data-i18n="pain.card5_text">El 40% de los comercios tienen una web anticuada. Tus clientes notan cuándo algo se ve "barato".</p>
       </div>
       <div class="pain-card">
         <div class="icon">😫</div>
-        <h3>No sabes por dónde empezar</h3>
-        <p>Entre el papeleo, el diseño y el mantenimiento, siempre lo dejas para "otro día". Ese día es hoy.</p>
+        <h3 data-i18n="pain.card6_title">No sabes por dónde empezar</h3>
+        <p data-i18n="pain.card6_text">Entre el papeleo, el diseño y el mantenimiento, siempre lo dejas para "otro día". Ese día es hoy.</p>
       </div>
     </div>
   </div>
@@ -657,32 +698,32 @@
 <!-- ============ COMPARISON ============ -->
 <section>
   <div class="container">
-    <div class="label">Antes y después</div>
-    <h2 class="section-title">Sin nosotros vs. Con TuEscaparate</h2>
-    <p class="section-sub">
+    <div class="label" data-i18n="comp.label">Antes y después</div>
+    <h2 class="section-title" data-i18n="comp.title">Sin nosotros vs. Con TuEscaparate</h2>
+    <p class="section-sub" data-i18n="comp.subtitle">
       No es solo tener una web. Es tener una web que funcione y te traiga clientes.
     </p>
     <div class="comparison-grid">
       <div class="comp-card bad">
-        <h3>❌ Sin nosotros</h3>
+        <h3 data-i18n="comp.bad_title">❌ Sin nosotros</h3>
         <ul>
-          <li>Web que no se ve en móvil</li>
-          <li>No apareces en Google Maps</li>
-          <li>Carga en 8 segundos</li>
-          <li>Diseño genérico de plantilla</li>
-          <li>Sin soporte ni mantenimiento</li>
-          <li>Pagaste y nadie te llama</li>
+          <li data-i18n="comp.bad1">Web que no se ve en móvil</li>
+          <li data-i18n="comp.bad2">No apareces en Google Maps</li>
+          <li data-i18n="comp.bad3">Carga en 8 segundos</li>
+          <li data-i18n="comp.bad4">Diseño genérico de plantilla</li>
+          <li data-i18n="comp.bad5">Sin soporte ni mantenimiento</li>
+          <li data-i18n="comp.bad6">Pagaste y nadie te llama</li>
         </ul>
       </div>
       <div class="comp-card good">
-        <h3>✅ Con TuEscaparate</h3>
+        <h3 data-i18n="comp.good_title">✅ Con TuEscaparate</h3>
         <ul>
-          <li>Diseño adaptado a móvil y desktop</li>
-          <li>Google Maps + SEO local activado</li>
-          <li>Carga en menos de 2 segundos</li>
-          <li>Diseño único para tu tipo de negocio</li>
-          <li>Te enseñamos a gestionarlo tú mismo</li>
-          <li>Gratis gracias al Kit Digital</li>
+          <li data-i18n="comp.good1">Diseño adaptado a móvil y desktop</li>
+          <li data-i18n="comp.good2">Google Maps + SEO local activado</li>
+          <li data-i18n="comp.good3">Carga en menos de 2 segundos</li>
+          <li data-i18n="comp.good4">Diseño único para tu tipo de negocio</li>
+          <li data-i18n="comp.good5">Te enseñamos a gestionarlo tú mismo</li>
+          <li data-i18n="comp.good6">Gratis gracias al Kit Digital</li>
         </ul>
       </div>
     </div>
@@ -692,29 +733,29 @@
 <!-- ============ 3 SERVICES ============ -->
 <section id="servicios">
   <div class="container">
-    <div class="label">Tres servicios</div>
-    <h2 class="section-title">De la web a la automatización</h2>
-    <p class="section-sub">
+    <div class="label" data-i18n="solutions.label">Tres servicios</div>
+    <h2 class="section-title" data-i18n="solutions.title">De la web a la automatización</h2>
+    <p class="section-sub" data-i18n="solutions.subtitle">
       No solo te hacemos la web. Te ponemos todo el negocio al día.
     </p>
     <div class="solution-grid">
       <a href="web.html" class="sol-card">
         <div class="icon">🌐</div>
-        <h3>Web gratis</h3>
-        <p>Web profesional con Kit Digital. Sin coste para ti. SEO local, Google Maps, Analytics. Lista en 7 días.</p>
-        <div style="margin-top:12px;font-size:12px;color:#e8593b;font-weight:600;">Saber más →</div>
+        <h3 data-i18n="solutions.card1_title">Web gratis</h3>
+        <p data-i18n="solutions.card1_text">Web profesional con Kit Digital. Sin coste para ti. SEO local, Google Maps, Analytics. Lista en 7 días.</p>
+        <div style="margin-top:12px;font-size:12px;color:#e8593b;font-weight:600;" data-i18n="solutions.card1_cta">Saber más →</div>
       </a>
       <a href="google-business.html" class="sol-card">
         <div class="icon">📍</div>
-        <h3>Google Business</h3>
-        <p>Optimizamos tu perfil de Google: fotos, horarios, reseñas, publicaciones. Apareces en Maps y búsqueda local.</p>
-        <div style="margin-top:12px;font-size:12px;color:#e8593b;font-weight:600;">Saber más →</div>
+        <h3 data-i18n="solutions.card2_title">Google Business</h3>
+        <p data-i18n="solutions.card2_text">Optimizamos tu perfil de Google: fotos, horarios, reseñas, publicaciones. Apareces en Maps y búsqueda local.</p>
+        <div style="margin-top:12px;font-size:12px;color:#e8593b;font-weight:600;" data-i18n="solutions.card2_cta">Saber más →</div>
       </a>
       <a href="automatizaciones.html" class="sol-card">
         <div class="icon">⚙️</div>
-        <h3>Automatizaciones</h3>
-        <p>Scripts a medida para tu negocio: facturación automática, recordatorios a clientes, control de stock básico.</p>
-        <div style="margin-top:12px;font-size:12px;color:#e8593b;font-weight:600;">Saber más →</div>
+        <h3 data-i18n="solutions.card3_title">Automatizaciones</h3>
+        <p data-i18n="solutions.card3_text">Scripts a medida para tu negocio: facturación automática, recordatorios a clientes, control de stock básico.</p>
+        <div style="margin-top:12px;font-size:12px;color:#e8593b;font-weight:600;" data-i18n="solutions.card3_cta">Saber más →</div>
       </a>
     </div>
   </div>
@@ -723,33 +764,33 @@
 <!-- ============ KIT DIGITAL ============ -->
 <section id="kit">
   <div class="container">
-    <div class="label">100% gratuito</div>
-    <h2 class="section-title">¿Qué es el Kit Digital?</h2>
-    <p class="section-sub">
+    <div class="label" data-i18n="kit.label">100% gratuito</div>
+    <h2 class="section-title" data-i18n="kit.title">¿Qué es el Kit Digital?</h2>
+    <p class="section-sub" data-i18n="kit.subtitle">
       Un programa del Gobierno de España que da bonos a autónomos y pymes para digitalizarse. 
       Nosotros lo gestionamos por ti.
     </p>
     <div class="kit-box">
       <div>
-        <h3>De 2.000€ a 12.000€<br>para tu negocio</h3>
-        <p>
+        <h3 data-i18n="kit.content_title">De 2.000€ a 12.000€<br>para tu negocio</h3>
+        <p data-i18n="kit.content_text">
           El Kit Digital está financiado por la Unión Europea (Next Generation) 
           y subvenciona la creación de páginas web, tiendas online, SEO y software de gestión.
         </p>
-        <p style="margin-top: 12px;">
+        <p style="margin-top: 12px;" data-i18n="kit.content_text2">
           <strong>Nosotros somos agente digitalizador.</strong> Solicitamos el bono, 
           gestionamos el papeleo y construimos tu web. Tú solo tienes que decirnos 
           cómo la quieres.
         </p>
         <div class="badge-row">
-          <span>🇪🇸 Gobierno de España</span>
-          <span>🇪🇺 Next Generation EU</span>
-          <span>✓ Sin coste</span>
+          <span data-i18n="kit.badge1">🇪🇸 Gobierno de España</span>
+          <span data-i18n="kit.badge2">🇪🇺 Next Generation EU</span>
+          <span data-i18n="kit.badge3">✓ Sin coste</span>
         </div>
       </div>
       <div class="kit-amount">
-        <div class="num">12.000€</div>
-        <div class="label">subvención máxima</div>
+        <div class="num" data-i18n="kit.amount">12.000€</div>
+        <div class="label" data-i18n="kit.amount_label">subvención máxima</div>
       </div>
     </div>
   </div>
@@ -758,26 +799,26 @@
 <!-- ============ HOW IT WORKS ============ -->
 <section id="como">
   <div class="container">
-    <div class="label">Así de fácil</div>
-    <h2 class="section-title">3 pasos y tienes tu web</h2>
-    <p class="section-sub">
+    <div class="label" data-i18n="steps.label">Así de fácil</div>
+    <h2 class="section-title" data-i18n="steps.title">3 pasos y tienes tu web</h2>
+    <p class="section-sub" data-i18n="steps.subtitle">
       Sin complicaciones. Nosotros hacemos el trabajo pesado.
     </p>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <h3>Te registras</h3>
-        <p>Entras en la web del Kit Digital, son 5 minutos. Si no quieres, lo hacemos nosotros por ti.</p>
+        <h3 data-i18n="steps.step1_title">Te registras</h3>
+        <p data-i18n="steps.step1_text">Entras en la web del Kit Digital, son 5 minutos. Si no quieres, lo hacemos nosotros por ti.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Eliges tu web</h3>
-        <p>Según tu negocio, te recomendamos la mejor plantilla. Tú pones los colores y las fotos.</p>
+        <h3 data-i18n="steps.step2_title">Eliges tu web</h3>
+        <p data-i18n="steps.step2_text">Según tu negocio, te recomendamos la mejor plantilla. Tú pones los colores y las fotos.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Lista en 7 días</h3>
-        <p>Construimos, publicamos y te damos acceso. Ya estás online.</p>
+        <h3 data-i18n="steps.step3_title">Lista en 7 días</h3>
+        <p data-i18n="steps.step3_text">Construimos, publicamos y te damos acceso. Ya estás online.</p>
       </div>
     </div>
   </div>
@@ -786,26 +827,26 @@
 <!-- ============ SHOPS ============ -->
 <section>
   <div class="container">
-    <div class="label">Para ti</div>
-    <h2 class="section-title">Cualquier negocio sirve</h2>
-    <p class="section-sub">
+    <div class="label" data-i18n="shops.label">Para ti</div>
+    <h2 class="section-title" data-i18n="shops.title">Cualquier negocio sirve</h2>
+    <p class="section-sub" data-i18n="shops.subtitle">
       Da igual lo que vendas. Si tienes un comercio en Madrid y pocos empleados, la subvención es tuya.
     </p>
     <div class="shops-grid">
-      <span class="shop-tag">🍕 Restaurante</span>
-      <span class="shop-tag">✂️ Peluquería</span>
-      <span class="shop-tag">👕 Tienda de ropa</span>
-      <span class="shop-tag">🔧 Taller mecánico</span>
-      <span class="shop-tag">🏋️ Gimnasio</span>
-      <span class="shop-tag">🛒 Tienda de barrio</span>
-      <span class="shop-tag">🏥 Clínica dental</span>
-      <span class="shop-tag">📚 Academia</span>
-      <span class="shop-tag">🍞 Panadería</span>
-      <span class="shop-tag">💐 Floristería</span>
-      <span class="shop-tag">🔨 Carpintería</span>
-      <span class="shop-tag">🐾 Tienda de animales</span>
-      <span class="shop-tag">📖 Librería</span>
-      <span class="shop-tag">☕ Cafetería</span>
+      <span class="shop-tag" data-i18n="shops.tag1">🍕 Restaurante</span>
+      <span class="shop-tag" data-i18n="shops.tag2">✂️ Peluquería</span>
+      <span class="shop-tag" data-i18n="shops.tag3">👕 Tienda de ropa</span>
+      <span class="shop-tag" data-i18n="shops.tag4">🔧 Taller mecánico</span>
+      <span class="shop-tag" data-i18n="shops.tag5">🏋️ Gimnasio</span>
+      <span class="shop-tag" data-i18n="shops.tag6">🛒 Tienda de barrio</span>
+      <span class="shop-tag" data-i18n="shops.tag7">🏥 Clínica dental</span>
+      <span class="shop-tag" data-i18n="shops.tag8">📚 Academia</span>
+      <span class="shop-tag" data-i18n="shops.tag9">🍞 Panadería</span>
+      <span class="shop-tag" data-i18n="shops.tag10">💐 Floristería</span>
+      <span class="shop-tag" data-i18n="shops.tag11">🔨 Carpintería</span>
+      <span class="shop-tag" data-i18n="shops.tag12">🐾 Tienda de animales</span>
+      <span class="shop-tag" data-i18n="shops.tag13">📖 Librería</span>
+      <span class="shop-tag" data-i18n="shops.tag14">☕ Cafetería</span>
     </div>
   </div>
 </section>
@@ -813,26 +854,26 @@
 <!-- ============ CTA ============ -->
 <section class="cta-section" id="contacto">
   <div class="container">
-    <h2>¿Cuándo empiezas?</h2>
-    <p>
+    <h2 data-i18n="cta.title">¿Cuándo empiezas?</h2>
+    <p data-i18n="cta.text">
       Dinos qué negocio tienes y en qué zona de Madrid estás. 
       Si cumples los requisitos, te hacemos la web sin que pagues nada.
     </p>
     <form id="contactForm">
-      <input type="text" name="name" placeholder="Tu nombre y apellidos" required />
-      <input type="email" name="email" placeholder="Tu correo electrónico" required />
-      <input type="text" name="business" placeholder="¿Qué negocio tienes?" required />
-      <input type="text" name="zone" placeholder="¿En qué zona de Madrid?" />
+      <input type="text" name="name" data-i18n="cta.placeholder_name" placeholder="Tu nombre y apellidos" required />
+      <input type="email" name="email" data-i18n="cta.placeholder_email" placeholder="Tu correo electrónico" required />
+      <input type="text" name="business" data-i18n="cta.placeholder_business" placeholder="¿Qué negocio tienes?" required />
+      <input type="text" name="zone" data-i18n="cta.placeholder_zone" placeholder="¿En qué zona de Madrid?" />
       <select name="service" required>
-        <option value="" disabled selected>¿Qué servicio te interesa?</option>
-        <option value="web">Web gratis (Kit Digital)</option>
-        <option value="google">Google Business (150€)</option>
-        <option value="automation">Automatizaciones (desde 300€)</option>
-        <option value="varios">Varios / No sé</option>
+        <option value="" disabled selected data-i18n="cta.placeholder_service">¿Qué servicio te interesa?</option>
+        <option value="web" data-i18n="cta.option_web">Web gratis (Kit Digital)</option>
+        <option value="google" data-i18n="cta.option_google">Google Business (150€)</option>
+        <option value="automation" data-i18n="cta.option_automation">Automatizaciones (desde 300€)</option>
+        <option value="varios" data-i18n="cta.option_various">Varios / No sé</option>
       </select>
-      <button type="submit">Sí, quiero empezar →</button>
+      <button type="submit" data-i18n="cta.button">Sí, quiero empezar →</button>
     </form>
-    <p style="font-size:13px;color:var(--hero-stat);margin-top:16px;">
+    <p style="font-size:13px;color:var(--hero-stat);margin-top:16px;" data-i18n="cta.privacy">
       Sin spam. Solo te escribimos para ayudarte.
     </p>
   </div>
@@ -841,65 +882,286 @@
 <!-- ============ FLOATING BAR ============ -->
 <div class="floating-bar">
   <div>
-    <p>Web gratis para tu negocio <small>Hasta 12.000€ de subvención del gobierno</small></p>
+    <p><span data-i18n="floating.text">Web gratis para tu negocio</span> <small data-i18n="floating.subtext">Hasta 12.000€ de subvención del gobierno</small></p>
   </div>
-  <a href="#contacto">Quiero la mía →</a>
+  <a href="#contacto" data-i18n="floating.cta">Quiero la mía →</a>
 </div>
 
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="container">
-    TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital
+    <span data-i18n="footer.text">TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital</span>
   </div>
 </footer>
 
 <script>
-  // ─── Dark Mode ───
   (function() {
-    const toggle = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('theme');
-    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-    toggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
-      localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    });
-  })();
+    // ─── Translations ───
+    const TRANSLATIONS = {
+      'nav.services': { es: 'Servicios', 'en-us': 'Services', 'en-gb': 'Services', fr: 'Prestations', de: 'Dienstleistungen', zh: '服务', ja: 'サービス' },
+      'nav.how': { es: 'Cómo funciona', 'en-us': 'How it works', 'en-gb': 'How it works', fr: 'Comment ça marche', de: 'Wie es funktioniert', zh: '运作方式', ja: '仕組み' },
+      'nav.kit': { es: 'Kit Digital', 'en-us': 'Kit Digital', 'en-gb': 'Kit Digital', fr: 'Kit Digital', de: 'Kit Digital', zh: 'Kit Digital', ja: 'Kit Digital' },
+      'nav.contact': { es: 'Contacto', 'en-us': 'Contact', 'en-gb': 'Contact', fr: 'Contact', de: 'Kontakt', zh: '联系', ja: 'お問い合わせ' },
+      'theme.aria': { es: 'Cambiar modo oscuro', 'en-us': 'Toggle dark mode', 'en-gb': 'Toggle dark mode', fr: 'Activer le mode sombre', de: 'Dunkelmodus umschalten', zh: '切换深色模式', ja: 'ダークモード切り替え' },
+      'hero.badge': { es: 'Fondos Next Generation UE — Plazos abiertos', 'en-us': 'Next Generation EU Funds — Open Calls', 'en-gb': 'Next Generation EU Funds — Open Calls', fr: 'Fonds Next Generation UE — Appels ouverts', de: 'Next Generation EU-Mittel — Offene Anträge', zh: '下一代欧盟基金 — 开放申请', ja: 'Next Generation EU基金 — 募集中' },
+      'hero.title': { es: 'Tu negocio en Madrid,<br><span class="highlight">al día sin pagar nada.</span>', 'en-us': 'Your business in Madrid,<br><span class="highlight">up to date for free.</span>', 'en-gb': 'Your business in Madrid,<br><span class="highlight">up to date for free.</span>', fr: 'Votre commerce à Madrid,<br><span class="highlight">à jour sans rien payer.</span>', de: 'Ihr Geschäft in Madrid,<br><span class="highlight">aktuell und kostenlos.</span>', zh: '您在马德里的业务，<br><span class="highlight">免费保持最新。</span>', ja: 'マドリードのあなたのビジネス、<br><span class="highlight">無料で最新に。</span>' },
+      'hero.subtitle': { es: 'El gobierno te da hasta 12.000€ para digitalizar tu comercio. Te hacemos la web, optimizamos tu Google Business y automatizamos tus tareas diarias. <strong>Todo sin coste o desde 150€.</strong>', 'en-us': 'The government gives you up to 12,000€ to digitize your business. We build your website, optimize your Google Business, and automate your daily tasks. <strong>All at no cost or from 150€.</strong>', 'en-gb': 'The government gives you up to 12,000€ to digitise your business. We build your website, optimise your Google Business, and automate your daily tasks. <strong>All at no cost or from 150€.</strong>', fr: 'Le gouvernement vous donne jusqu\'à 12.000€ pour numériser votre commerce. Nous créons votre site, optimisons votre Google Business et automatisons vos tâches quotidiennes. <strong>Le tout sans frais ou à partir de 150€.</strong>', de: 'Die Regierung gibt Ihnen bis zu 12.000€ für die Digitalisierung Ihres Geschäfts. Wir erstellen Ihre Website, optimieren Ihr Google Business und automatisieren Ihre täglichen Aufgaben. <strong>Alles kostenlos oder ab 150€.</strong>', zh: '政府为您提供高达12,000€用于数字化您的业务。我们为您建站，优化您的Google Business，并自动化您的日常任务。<strong>全部免费或从150€起。</strong>', ja: '政府があなたのビジネスのデジタル化に最大12,000€を提供します。ウェブサイト制作、Google Businessの最適化、日常業務の自動化を行います。<strong>すべて無料または150€から。</strong>' },
+      'hero.cta_primary': { es: 'Empieza gratis →', 'en-us': 'Start for free →', 'en-gb': 'Start for free →', fr: 'Commencez gratuitement →', de: 'Kostenlos starten →', zh: '免费开始 →', ja: '無料で始める →' },
+      'hero.cta_secondary': { es: 'Ver servicios', 'en-us': 'View services', 'en-gb': 'View services', fr: 'Voir les prestations', de: 'Dienstleistungen ansehen', zh: '查看服务', ja: 'サービスを見る' },
+      'hero.stat1_value': { es: '12.000€', 'en-us': '12,000€', 'en-gb': '12,000€', fr: '12.000€', de: '12.000€', zh: '12,000€', ja: '12,000€' },
+      'hero.stat1_label': { es: 'Subvención máxima', 'en-us': 'Maximum grant', 'en-gb': 'Maximum grant', fr: 'Subvention maximale', de: 'Maximale Förderung', zh: '最高补贴', ja: '最大補助金' },
+      'hero.stat2_value': { es: '0€', 'en-us': '0€', 'en-gb': '0€', fr: '0€', de: '0€', zh: '0€', ja: '0€' },
+      'hero.stat2_label': { es: 'Para tu bolsillo', 'en-us': 'Out of your pocket', 'en-gb': 'Out of your pocket', fr: 'De votre poche', de: 'Aus eigener Tasche', zh: '自付费用', ja: '自己負担' },
+      'hero.stat3_value': { es: '7 días', 'en-us': '7 days', 'en-gb': '7 days', fr: '7 jours', de: '7 Tage', zh: '7天', ja: '7日間' },
+      'hero.stat3_label': { es: 'Tu web online', 'en-us': 'Your website live', 'en-gb': 'Your website live', fr: 'Votre site en ligne', de: 'Ihre Website online', zh: '网站上线', ja: 'ウェブサイト公開' },
+      'trust.text': { es: 'Programa oficial del gobierno de España', 'en-us': 'Official program of the Spanish government', 'en-gb': 'Official programme of the Spanish government', fr: 'Programme officiel du gouvernement espagnol', de: 'Offizielles Programm der spanischen Regierung', zh: '西班牙政府官方计划', ja: 'スペイン政府公式プログラム' },
+      'trust.span1': { es: 'Gobierno de España', 'en-us': 'Government of Spain', 'en-gb': 'Government of Spain', fr: 'Gouvernement d\'Espagne', de: 'Regierung Spaniens', zh: '西班牙政府', ja: 'スペイン政府' },
+      'trust.span2': { es: 'Next Generation EU', 'en-us': 'Next Generation EU', 'en-gb': 'Next Generation EU', fr: 'Next Generation EU', de: 'Next Generation EU', zh: 'Next Generation EU', ja: 'Next Generation EU' },
+      'trust.span3': { es: 'Kit Digital', 'en-us': 'Kit Digital', 'en-gb': 'Kit Digital', fr: 'Kit Digital', de: 'Kit Digital', zh: 'Kit Digital', ja: 'Kit Digital' },
+      'pain.label': { es: '¿Te suena?', 'en-us': 'Does this ring a bell?', 'en-gb': 'Does this ring a bell?', fr: 'Ça vous dit quelque chose?', de: 'Kommt Ihnen das bekannt vor?', zh: '听起来熟悉吗？', ja: '心当たりはありませんか？' },
+      'pain.title': { es: 'Duele, ¿verdad?', 'en-us': 'It hurts, right?', 'en-gb': 'It hurts, right?', fr: 'Ça fait mal, non?', de: 'Es tut weh, oder?', zh: '很痛，对吧？', ja: '痛いですよね？' },
+      'pain.subtitle': { es: 'La mayoría de pequeños comercios de Madrid tienen estos mismos problemas. No eres el único, pero puedes ser de los que lo solucionan.', 'en-us': 'Most small businesses in Madrid have these same problems. You\'re not alone, but you can be one of the ones who solve them.', 'en-gb': 'Most small businesses in Madrid have these same problems. You\'re not alone, but you can be one of the ones who solve them.', fr: 'La plupart des petits commerces de Madrid ont ces mêmes problèmes. Vous n\'êtes pas le seul, mais vous pouvez être parmi ceux qui les résolvent.', de: 'Die meisten kleinen Geschäfte in Madrid haben dieselben Probleme. Sie sind nicht allein, aber Sie können einer derjenigen sein, die sie lösen.', zh: '马德里的大多数小型企业都有这些问题。您不是唯一的一个，但您可以成为解决问题的人之一。', ja: 'マドリードのほとんどの小規模事業者が同じ問題を抱えています。あなただけではありませんが、解決できる一人になることができます。' },
+      'pain.card1_title': { es: 'No te ven en el móvil', 'en-us': 'They can\'t find you on mobile', 'en-gb': 'They can\'t find you on mobile', fr: 'Ils ne vous trouvent pas sur mobile', de: 'Man findet Sie nicht auf dem Handy', zh: '他们在手机上找不到你', ja: 'スマホで見つけてもらえない' },
+      'pain.card1_text': { es: 'El 70% de tus clientes te busca desde el teléfono. Si no apareces bien, se van a la competencia.', 'en-us': '70% of your customers search for you from their phones. If you don\'t show up well, they go to the competition.', 'en-gb': '70% of your customers search for you from their phones. If you don\'t show up well, they go to the competition.', fr: '70% de vos clients vous cherchent depuis leur téléphone. Si vous n\'apparaissez pas bien, ils vont chez la concurrence.', de: '70% Ihrer Kunden suchen Sie über das Telefon. Wenn Sie nicht gut erscheinen, gehen sie zur Konkurrenz.', zh: '70%的客户通过手机搜索您。如果您没有良好呈现，他们就会转向竞争对手。', ja: 'お客様の70%がスマートフォンから検索しています。うまく表示されなければ、競合他社に流れてしまいます。' },
+      'pain.card2_title': { es: 'No existes en Google', 'en-us': 'You don\'t exist on Google', 'en-gb': 'You don\'t exist on Google', fr: 'Vous n\'existez pas sur Google', de: 'Sie existieren nicht auf Google', zh: '你在谷歌上不存在', ja: 'Googleに存在していない' },
+      'pain.card2_text': { es: 'Te buscan por tu barrio y no sales. Sin Google Maps ni SEO local, eres invisible.', 'en-us': 'They search for you in your neighborhood and you don\'t show up. Without Google Maps or local SEO, you\'re invisible.', 'en-gb': 'They search for you in your neighbourhood and you don\'t show up. Without Google Maps or local SEO, you\'re invisible.', fr: 'On vous cherche dans votre quartier et vous n\'apparaissez pas. Sans Google Maps ni SEO local, vous êtes invisible.', de: 'Man sucht Sie in Ihrer Nachbarschaft und Sie tauchen nicht auf. Ohne Google Maps oder lokales SEO sind Sie unsichtbar.', zh: '人们在您的街区搜索您，但您没有出现。没有Google Maps或本地SEO，您是隐形的。', ja: 'あなたの地域で検索しても表示されません。Google MapsやローカルSEOがなければ、あなたは見えません。' },
+      'pain.card3_title': { es: 'Tu web es lenta', 'en-us': 'Your website is slow', 'en-gb': 'Your website is slow', fr: 'Votre site est lent', de: 'Ihre Website ist langsam', zh: '你的网站太慢', ja: 'ウェブサイトが遅い' },
+      'pain.card3_text': { es: 'Las webs baratas cargan en 6-8 segundos. Si tardas más de 3, pierdes al 40% de los visitantes.', 'en-us': 'Cheap websites take 6-8 seconds to load. If you take more than 3, you lose 40% of visitors.', 'en-gb': 'Cheap websites take 6-8 seconds to load. If you take more than 3, you lose 40% of visitors.', fr: 'Les sites bon marché mettent 6 à 8 secondes à charger. Si vous dépassez 3 secondes, vous perdez 40% des visiteurs.', de: 'Billige Websites laden in 6-8 Sekunden. Wenn Sie länger als 3 brauchen, verlieren Sie 40% der Besucher.', zh: '廉价网站需要6-8秒加载。如果超过3秒，您将失去40%的访客。', ja: '安価なウェブサイトは6〜8秒かかります。3秒以上かかると、訪問者の40%を失います。' },
+      'pain.card4_title': { es: 'Pagaste y no pasó nada', 'en-us': 'You paid and nothing happened', 'en-gb': 'You paid and nothing happened', fr: 'Vous avez payé et rien ne s\'est passé', de: 'Sie haben bezahlt und nichts passierte', zh: '你付了钱，但什么也没发生', ja: 'お金を払ったのに何も起こらなかった' },
+      'pain.card4_text': { es: 'Gastaste 500€ en una web de Fiverr o Wix y ahora nadie te llama. No era una web, era un adorno.', 'en-us': 'You spent 500€ on a Fiverr or Wix website and now nobody calls you. It wasn\'t a website, it was decoration.', 'en-gb': 'You spent 500€ on a Fiverr or Wix website and now nobody calls you. It wasn\'t a website, it was decoration.', fr: 'Vous avez dépensé 500€ sur un site Fiverr ou Wix et maintenant personne ne vous appelle. Ce n\'était pas un site, c\'était une décoration.', de: 'Sie haben 500€ für eine Fiverr- oder Wix-Website ausgegeben und jetzt ruft Sie niemand an. Es war keine Website, es war Dekoration.', zh: '您在Fiverr或Wix上花了500€建站，现在没有人打电话给您。那不是网站，那是个装饰品。', ja: 'FiverrやWixのウェブサイトに500€使ったのに、誰も電話してきません。それはウェブサイトではなく、飾りでした。' },
+      'pain.card5_title': { es: 'Parece de 2015', 'en-us': 'It looks like 2015', 'en-gb': 'It looks like 2015', fr: 'Ça ressemble à 2015', de: 'Es sieht aus wie 2015', zh: '看起来像2015年的', ja: '2015年みたいに見える' },
+      'pain.card5_text': { es: 'El 40% de los comercios tienen una web anticuada. Tus clientes notan cuándo algo se ve "barato".', 'en-us': '40% of businesses have an outdated website. Your customers notice when something looks "cheap".', 'en-gb': '40% of businesses have an outdated website. Your customers notice when something looks "cheap".', fr: '40% des commerces ont un site web obsolète. Vos clients remarquent quand quelque chose a l\'air "bon marché".', de: '40% der Geschäfte haben eine veraltete Website. Ihre Kunden merken, wenn etwas "billig" aussieht.', zh: '40%的企业拥有过时的网站。您的客户会注意到什么时候看起来"廉价"。', ja: '40%の事業者が時代遅れのウェブサイトを持っています。お客様は何かが「安っぽく」見えるときに気づきます。' },
+      'pain.card6_title': { es: 'No sabes por dónde empezar', 'en-us': 'You don\'t know where to start', 'en-gb': 'You don\'t know where to start', fr: 'Vous ne savez pas par où commencer', de: 'Sie wissen nicht, wo Sie anfangen sollen', zh: '你不知道从何开始', ja: 'どこから始めればいいかわからない' },
+      'pain.card6_text': { es: 'Entre el papeleo, el diseño y el mantenimiento, siempre lo dejas para "otro día". Ese día es hoy.', 'en-us': 'Between the paperwork, design, and maintenance, you always put it off for "another day". That day is today.', 'en-gb': 'Between the paperwork, design, and maintenance, you always put it off for "another day". That day is today.', fr: 'Entre la paperasse, le design et la maintenance, vous remettez toujours à "un autre jour". Ce jour est aujourd\'hui.', de: 'Zwischen Papierkram, Design und Wartung schieben Sie es immer auf "einen anderen Tag" auf. Dieser Tag ist heute.', zh: '在文书工作、设计和维护之间，您总是把它推迟到"改天"。今天就是那一天。', ja: '書類作業、デザイン、メンテナンスの間で、いつも「また今度」と先延ばしにしています。その「今度」は今日です。' },
+      'comp.label': { es: 'Antes y después', 'en-us': 'Before and after', 'en-gb': 'Before and after', fr: 'Avant et après', de: 'Vorher und nachher', zh: '前后对比', ja: '導入前と導入後' },
+      'comp.title': { es: 'Sin nosotros vs. Con TuEscaparate', 'en-us': 'Without us vs. With TuEscaparate', 'en-gb': 'Without us vs. With TuEscaparate', fr: 'Sans nous vs. Avec TuEscaparate', de: 'Ohne uns vs. Mit TuEscaparate', zh: '没有我们 vs. 使用TuEscaparate', ja: '弊社なし vs. TuEscaparateあり' },
+      'comp.subtitle': { es: 'No es solo tener una web. Es tener una web que funcione y te traiga clientes.', 'en-us': 'It\'s not just about having a website. It\'s about having a website that works and brings you customers.', 'en-gb': 'It\'s not just about having a website. It\'s about having a website that works and brings you customers.', fr: 'Il ne s\'agit pas seulement d\'avoir un site web. Il s\'agit d\'avoir un site qui fonctionne et qui vous amène des clients.', de: 'Es geht nicht nur darum, eine Website zu haben. Es geht darum, eine Website zu haben, die funktioniert und Ihnen Kunden bringt.', zh: '这不只是拥有一个网站。而是要拥有一个有效运作并为您带来客户的网站。', ja: '単にウェブサイトを持つことだけではありません。機能してお客様を呼び込むウェブサイトを持つことです。' },
+      'comp.bad_title': { es: '❌ Sin nosotros', 'en-us': '❌ Without us', 'en-gb': '❌ Without us', fr: '❌ Sans nous', de: '❌ Ohne uns', zh: '❌ 没有我们', ja: '❌ 弊社なし' },
+      'comp.good_title': { es: '✅ Con TuEscaparate', 'en-us': '✅ With TuEscaparate', 'en-gb': '✅ With TuEscaparate', fr: '✅ Avec TuEscaparate', de: '✅ Mit TuEscaparate', zh: '✅ 使用TuEscaparate', ja: '✅ TuEscaparateあり' },
+      'comp.bad1': { es: 'Web que no se ve en móvil', 'en-us': 'Website that doesn\'t work on mobile', 'en-gb': 'Website that doesn\'t work on mobile', fr: 'Site qui ne s\'affiche pas sur mobile', de: 'Website, die auf dem Handy nicht funktioniert', zh: '在手机上无法正常显示的网站', ja: 'スマホで表示されないウェブサイト' },
+      'comp.bad2': { es: 'No apareces en Google Maps', 'en-us': 'You don\'t appear on Google Maps', 'en-gb': 'You don\'t appear on Google Maps', fr: 'Vous n\'apparaissez pas sur Google Maps', de: 'Sie erscheinen nicht in Google Maps', zh: '您不会出现在Google Maps上', ja: 'Google Mapsに表示されない' },
+      'comp.bad3': { es: 'Carga en 8 segundos', 'en-us': 'Loads in 8 seconds', 'en-gb': 'Loads in 8 seconds', fr: 'Charge en 8 secondes', de: 'Lädt in 8 Sekunden', zh: '加载需要8秒', ja: '読み込みに8秒かかる' },
+      'comp.bad4': { es: 'Diseño genérico de plantilla', 'en-us': 'Generic template design', 'en-gb': 'Generic template design', fr: 'Design générique de modèle', de: 'Generisches Vorlagendesign', zh: '通用模板设计', ja: '汎用テンプレートデザイン' },
+      'comp.bad5': { es: 'Sin soporte ni mantenimiento', 'en-us': 'No support or maintenance', 'en-gb': 'No support or maintenance', fr: 'Sans support ni maintenance', de: 'Kein Support oder Wartung', zh: '没有支持或维护', ja: 'サポートやメンテナンスなし' },
+      'comp.bad6': { es: 'Pagaste y nadie te llama', 'en-us': 'You paid and nobody calls you', 'en-gb': 'You paid and nobody calls you', fr: 'Vous avez payé et personne ne vous appelle', de: 'Sie haben bezahlt und niemand ruft Sie an', zh: '你付了钱，但没人打电话给你', ja: 'お金を払ったのに誰も電話してこない' },
+      'comp.good1': { es: 'Diseño adaptado a móvil y desktop', 'en-us': 'Design adapted for mobile and desktop', 'en-gb': 'Design adapted for mobile and desktop', fr: 'Design adapté au mobile et au desktop', de: 'Design angepasst für Mobil und Desktop', zh: '为移动端和桌面端优化的设计', ja: 'モバイルとデスクトップに最適化されたデザイン' },
+      'comp.good2': { es: 'Google Maps + SEO local activado', 'en-us': 'Google Maps + local SEO activated', 'en-gb': 'Google Maps + local SEO activated', fr: 'Google Maps + SEO local activé', de: 'Google Maps + lokales SEO aktiviert', zh: 'Google Maps + 本地SEO已激活', ja: 'Google Maps + ローカルSEO有効' },
+      'comp.good3': { es: 'Carga en menos de 2 segundos', 'en-us': 'Loads in under 2 seconds', 'en-gb': 'Loads in under 2 seconds', fr: 'Charge en moins de 2 secondes', de: 'Lädt in unter 2 Sekunden', zh: '加载时间不超过2秒', ja: '2秒未満で読み込み' },
+      'comp.good4': { es: 'Diseño único para tu tipo de negocio', 'en-us': 'Unique design for your business type', 'en-gb': 'Unique design for your business type', fr: 'Design unique pour votre type de commerce', de: 'Einzigartiges Design für Ihre Geschäftsart', zh: '为您的业务类型量身定制独特设计', ja: 'あなたのビジネスタイプに合わせた独自デザイン' },
+      'comp.good5': { es: 'Te enseñamos a gestionarlo tú mismo', 'en-us': 'We teach you to manage it yourself', 'en-gb': 'We teach you to manage it yourself', fr: 'Nous vous apprenons à le gérer vous-même', de: 'Wir bringen Ihnen bei, es selbst zu verwalten', zh: '我们教您自己管理', ja: 'ご自身で管理できるようサポート' },
+      'comp.good6': { es: 'Gratis gracias al Kit Digital', 'en-us': 'Free thanks to Kit Digital', 'en-gb': 'Free thanks to Kit Digital', fr: 'Gratuit grâce au Kit Digital', de: 'Kostenlos dank Kit Digital', zh: '感谢Kit Digital，完全免费', ja: 'Kit Digitalにより無料' },
+      'solutions.label': { es: 'Tres servicios', 'en-us': 'Three services', 'en-gb': 'Three services', fr: 'Trois prestations', de: 'Drei Dienstleistungen', zh: '三项服务', ja: '3つのサービス' },
+      'solutions.title': { es: 'De la web a la automatización', 'en-us': 'From the website to automation', 'en-gb': 'From the website to automation', fr: 'Du site web à l\'automatisation', de: 'Von der Website bis zur Automatisierung', zh: '从网站到自动化', ja: 'ウェブサイトから自動化まで' },
+      'solutions.subtitle': { es: 'No solo te hacemos la web. Te ponemos todo el negocio al día.', 'en-us': 'We don\'t just build your website. We bring your entire business up to date.', 'en-gb': 'We don\'t just build your website. We bring your entire business up to date.', fr: 'Nous ne faisons pas que votre site. Nous mettons toute votre entreprise à jour.', de: 'Wir erstellen nicht nur Ihre Website. Wir bringen Ihr gesamtes Geschäft auf den neuesten Stand.', zh: '我们不只是为您建站。我们让您的整个业务与时俱进。', ja: 'ウェブサイトを作るだけではありません。ビジネス全体を最新の状態にします。' },
+      'solutions.card1_title': { es: 'Web gratis', 'en-us': 'Free website', 'en-gb': 'Free website', fr: 'Site web gratuit', de: 'Kostenlose Website', zh: '免费网站', ja: '無料ウェブサイト' },
+      'solutions.card1_text': { es: 'Web profesional con Kit Digital. Sin coste para ti. SEO local, Google Maps, Analytics. Lista en 7 días.', 'en-us': 'Professional website with Kit Digital. No cost to you. Local SEO, Google Maps, Analytics. Ready in 7 days.', 'en-gb': 'Professional website with Kit Digital. No cost to you. Local SEO, Google Maps, Analytics. Ready in 7 days.', fr: 'Site web professionnel avec Kit Digital. Sans frais pour vous. SEO local, Google Maps, Analytics. Prêt en 7 jours.', de: 'Professionelle Website mit Kit Digital. Keine Kosten für Sie. Lokales SEO, Google Maps, Analytics. Fertig in 7 Tagen.', zh: '使用Kit Digital的专业网站。对您完全免费。本地SEO、Google Maps、Analytics。7天内准备就绪。', ja: 'Kit Digital対応のプロフェッショナルウェブサイト。無料。ローカルSEO、Google Maps、Analytics。7日で納品。' },
+      'solutions.card1_cta': { es: 'Saber más →', 'en-us': 'Learn more →', 'en-gb': 'Learn more →', fr: 'En savoir plus →', de: 'Mehr erfahren →', zh: '了解更多 →', ja: '詳しく見る →' },
+      'solutions.card2_title': { es: 'Google Business', 'en-us': 'Google Business', 'en-gb': 'Google Business', fr: 'Google Business', de: 'Google Business', zh: 'Google Business', ja: 'Google Business' },
+      'solutions.card2_text': { es: 'Optimizamos tu perfil de Google: fotos, horarios, reseñas, publicaciones. Apareces en Maps y búsqueda local.', 'en-us': 'We optimize your Google profile: photos, hours, reviews, posts. You appear on Maps and local search.', 'en-gb': 'We optimise your Google profile: photos, hours, reviews, posts. You appear on Maps and local search.', fr: 'Nous optimisons votre profil Google : photos, horaires, avis, publications. Vous apparaissez sur Maps et la recherche locale.', de: 'Wir optimieren Ihr Google-Profil: Fotos, Öffnungszeiten, Bewertungen, Beiträge. Sie erscheinen in Maps und der lokalen Suche.', zh: '我们优化您的Google资料：照片、营业时间、评论、帖子。您将出现在Maps和本地搜索中。', ja: 'Googleプロフィールを最適化：写真、営業時間、レビュー、投稿。Mapsとローカル検索に表示されます。' },
+      'solutions.card2_cta': { es: 'Saber más →', 'en-us': 'Learn more →', 'en-gb': 'Learn more →', fr: 'En savoir plus →', de: 'Mehr erfahren →', zh: '了解更多 →', ja: '詳しく見る →' },
+      'solutions.card3_title': { es: 'Automatizaciones', 'en-us': 'Automations', 'en-gb': 'Automations', fr: 'Automatisations', de: 'Automatisierungen', zh: '自动化', ja: '自動化' },
+      'solutions.card3_text': { es: 'Scripts a medida para tu negocio: facturación automática, recordatorios a clientes, control de stock básico.', 'en-us': 'Custom scripts for your business: automatic invoicing, customer reminders, basic stock control.', 'en-gb': 'Custom scripts for your business: automatic invoicing, customer reminders, basic stock control.', fr: 'Scripts sur mesure pour votre commerce : facturation automatique, rappels clients, contrôle de stock basique.', de: 'Massgeschneiderte Skripte für Ihr Geschäft: automatische Rechnungsstellung, Kunden-Erinnerungen, einfache Lagerverwaltung.', zh: '为您的业务定制的脚本：自动开票、客户提醒、基本库存控制。', ja: 'ビジネスに合わせたカスタムスクリプト：自動請求書作成、顧客リマインダー、基本的な在庫管理。' },
+      'solutions.card3_cta': { es: 'Saber más →', 'en-us': 'Learn more →', 'en-gb': 'Learn more →', fr: 'En savoir plus →', de: 'Mehr erfahren →', zh: '了解更多 →', ja: '詳しく見る →' },
+      'kit.label': { es: '100% gratuito', 'en-us': '100% free', 'en-gb': '100% free', fr: '100% gratuit', de: '100% kostenlos', zh: '100%免费', ja: '100%無料' },
+      'kit.title': { es: '¿Qué es el Kit Digital?', 'en-us': 'What is Kit Digital?', 'en-gb': 'What is Kit Digital?', fr: 'Qu\'est-ce que le Kit Digital?', de: 'Was ist Kit Digital?', zh: '什么是Kit Digital？', ja: 'Kit Digitalとは？' },
+      'kit.subtitle': { es: 'Un programa del Gobierno de España que da bonos a autónomos y pymes para digitalizarse. Nosotros lo gestionamos por ti.', 'en-us': 'A program from the Government of Spain that gives vouchers to freelancers and SMEs to digitize. We handle it for you.', 'en-gb': 'A programme from the Government of Spain that gives vouchers to freelancers and SMEs to digitise. We handle it for you.', fr: 'Un programme du gouvernement espagnol qui donne des chèques aux auto-entrepreneurs et PME pour se numériser. Nous le gérons pour vous.', de: 'Ein Programm der spanischen Regierung, das Gutscheine an Selbstständige und KMU zur Digitalisierung vergibt. Wir kümmern uns darum für Sie.', zh: '西班牙政府的一项计划，为自由职业者和中小企业提供数字化代金券。我们为您处理。', ja: 'スペイン政府による、フリーランサーや中小企業向けのデジタル化補助金プログラム。弊社が代行します。' },
+      'kit.content_title': { es: 'De 2.000€ a 12.000€<br>para tu negocio', 'en-us': 'From 2,000€ to 12,000€<br>for your business', 'en-gb': 'From 2,000€ to 12,000€<br>for your business', fr: 'De 2.000€ à 12.000€<br>pour votre commerce', de: 'Von 2.000€ bis 12.000€<br>für Ihr Geschäft', zh: '从2,000€到12,000€<br>为您的业务', ja: '2,000€から12,000€<br>あなたのビジネスのために' },
+      'kit.content_text': { es: 'El Kit Digital está financiado por la Unión Europea (Next Generation) y subvenciona la creación de páginas web, tiendas online, SEO y software de gestión.', 'en-us': 'Kit Digital is funded by the European Union (Next Generation) and subsidizes the creation of websites, online stores, SEO, and management software.', 'en-gb': 'Kit Digital is funded by the European Union (Next Generation) and subsidises the creation of websites, online stores, SEO, and management software.', fr: 'Le Kit Digital est financé par l\'Union Européenne (Next Generation) et subventionne la création de sites web, boutiques en ligne, SEO et logiciels de gestion.', de: 'Kit Digital wird von der Europäischen Union (Next Generation) finanziert und bezuschusst die Erstellung von Websites, Online-Shops, SEO und Verwaltungssoftware.', zh: 'Kit Digital由欧盟（Next Generation）资助，补贴网站、在线商店、SEO和管理软件的创建。', ja: 'Kit Digitalは欧州連合（Next Generation）から資金提供を受けており、ウェブサイト、オンラインストア、SEO、管理ソフトウェアの制作を補助します。' },
+      'kit.content_text2': { es: '<strong>Nosotros somos agente digitalizador.</strong> Solicitamos el bono, gestionamos el papeleo y construimos tu web. Tú solo tienes que decirnos cómo la quieres.', 'en-us': '<strong>We are a digitalizing agent.</strong> We apply for the voucher, handle the paperwork, and build your website. You just have to tell us how you want it.', 'en-gb': '<strong>We are a digitalising agent.</strong> We apply for the voucher, handle the paperwork, and build your website. You just have to tell us how you want it.', fr: '<strong>Nous sommes un agent digitalisateur.</strong> Nous demandons le chèque, gérons la paperasse et construisons votre site. Vous n\'avez qu\'à nous dire comment vous le voulez.', de: '<strong>Wir sind ein Digitalisierungsagent.</strong> Wir beantragen den Gutschein, erledigen den Papierkram und erstellen Ihre Website. Sie müssen uns nur sagen, wie Sie es möchten.', zh: '<strong>我们是数字化代理。</strong>我们申请代金券、处理文书工作并构建您的网站。您只需告诉我们您想要的样子。', ja: '<strong>当社はデジタル化代行機関です。</strong>補助金の申請、書類手続き、ウェブサイト制作を代行します。お客様はご希望をお伝えいただくだけです。' },
+      'kit.badge1': { es: 'Gobierno de España', 'en-us': 'Government of Spain', 'en-gb': 'Government of Spain', fr: 'Gouvernement d\'Espagne', de: 'Regierung Spaniens', zh: '西班牙政府', ja: 'スペイン政府' },
+      'kit.badge2': { es: 'Next Generation EU', 'en-us': 'Next Generation EU', 'en-gb': 'Next Generation EU', fr: 'Next Generation EU', de: 'Next Generation EU', zh: 'Next Generation EU', ja: 'Next Generation EU' },
+      'kit.badge3': { es: '✓ Sin coste', 'en-us': '✓ No cost', 'en-gb': '✓ No cost', fr: '✓ Sans frais', de: '✓ Kostenlos', zh: '✓ 免费', ja: '✓ 無料' },
+      'kit.amount': { es: '12.000€', 'en-us': '12,000€', 'en-gb': '12,000€', fr: '12.000€', de: '12.000€', zh: '12,000€', ja: '12,000€' },
+      'kit.amount_label': { es: 'subvención máxima', 'en-us': 'maximum grant', 'en-gb': 'maximum grant', fr: 'subvention maximale', de: 'maximale Förderung', zh: '最高补贴', ja: '最大補助金' },
+      'steps.label': { es: 'Así de fácil', 'en-us': 'That\'s how easy', 'en-gb': 'That\'s how easy', fr: 'C\'est aussi simple', de: 'So einfach ist es', zh: '就是这么简单', ja: 'こんなに簡単' },
+      'steps.title': { es: '3 pasos y tienes tu web', 'en-us': '3 steps and you have your website', 'en-gb': '3 steps and you have your website', fr: '3 étapes et vous avez votre site', de: '3 Schritte und Sie haben Ihre Website', zh: '3步，您就拥有自己的网站', ja: '3ステップでウェブサイト完成' },
+      'steps.subtitle': { es: 'Sin complicaciones. Nosotros hacemos el trabajo pesado.', 'en-us': 'No complications. We do the heavy lifting.', 'en-gb': 'No complications. We do the heavy lifting.', fr: 'Sans complications. Nous faisons le travail difficile.', de: 'Keine Komplikationen. Wir erledigen die harte Arbeit.', zh: '毫无复杂。我们做繁重的工作。', ja: '複雑なことはありません。難しい作業はこちらで行います。' },
+      'steps.step1_title': { es: 'Te registras', 'en-us': 'You register', 'en-gb': 'You register', fr: 'Vous vous inscrivez', de: 'Sie registrieren sich', zh: '注册', ja: '登録する' },
+      'steps.step1_text': { es: 'Entras en la web del Kit Digital, son 5 minutos. Si no quieres, lo hacemos nosotros por ti.', 'en-us': 'Go to the Kit Digital website, it takes 5 minutes. If you don\'t want to, we\'ll do it for you.', 'en-gb': 'Go to the Kit Digital website, it takes 5 minutes. If you don\'t want to, we\'ll do it for you.', fr: 'Allez sur le site du Kit Digital, ça prend 5 minutes. Si vous ne voulez pas, nous le faisons pour vous.', de: 'Gehen Sie auf die Kit Digital-Website, dauert 5 Minuten. Wenn Sie nicht möchten, machen wir es für Sie.', zh: '前往Kit Digital网站，只需5分钟。如果您不想操作，我们替您完成。', ja: 'Kit Digitalのウェブサイトにアクセス、たった5分。ご自身でされたくない場合は、代行します。' },
+      'steps.step2_title': { es: 'Eliges tu web', 'en-us': 'Choose your website', 'en-gb': 'Choose your website', fr: 'Choisissez votre site', de: 'Wählen Sie Ihre Website', zh: '选择您的网站', ja: 'ウェブサイトを選ぶ' },
+      'steps.step2_text': { es: 'Según tu negocio, te recomendamos la mejor plantilla. Tú pones los colores y las fotos.', 'en-us': 'Based on your business, we recommend the best template. You choose the colours and photos.', 'en-gb': 'Based on your business, we recommend the best template. You choose the colours and photos.', fr: 'Selon votre commerce, nous recommandons le meilleur modèle. Vous choisissez les couleurs et les photos.', de: 'Basierend auf Ihrem Geschäft empfehlen wir die beste Vorlage. Sie wählen die Farben und Fotos aus.', zh: '根据您的业务，我们推荐最佳模板。您选择颜色和照片。', ja: 'あなたのビジネスに基づいて最適なテンプレートをご提案。色や写真はお客様がお選びいただけます。' },
+      'steps.step3_title': { es: 'Lista en 7 días', 'en-us': 'Ready in 7 days', 'en-gb': 'Ready in 7 days', fr: 'Prêt en 7 jours', de: 'Fertig in 7 Tagen', zh: '7天内准备就绪', ja: '7日で完成' },
+      'steps.step3_text': { es: 'Construimos, publicamos y te damos acceso. Ya estás online.', 'en-us': 'We build, publish, and give you access. You\'re online.', 'en-gb': 'We build, publish, and give you access. You\'re online.', fr: 'Nous construisons, publions et vous donnons accès. Vous êtes en ligne.', de: 'Wir erstellen, veröffentlichen und geben Ihnen Zugriff. Sie sind online.', zh: '我们构建、发布并授予您访问权限。您已上线。', ja: '制作、公開、アクセス権の付与まで行います。あなたのウェブサイトが公開されます。' },
+      'shops.label': { es: 'Para ti', 'en-us': 'For you', 'en-gb': 'For you', fr: 'Pour vous', de: 'Für Sie', zh: '为您服务', ja: 'あなた向け' },
+      'shops.title': { es: 'Cualquier negocio sirve', 'en-us': 'Any business works', 'en-gb': 'Any business works', fr: 'Tout commerce est éligible', de: 'Jedes Geschäft ist geeignet', zh: '任何业务都适用', ja: 'あらゆるビジネスに対応' },
+      'shops.subtitle': { es: 'Da igual lo que vendas. Si tienes un comercio en Madrid y pocos empleados, la subvención es tuya.', 'en-us': 'No matter what you sell. If you have a business in Madrid and few employees, the grant is yours.', 'en-gb': 'No matter what you sell. If you have a business in Madrid and few employees, the grant is yours.', fr: 'Peu importe ce que vous vendez. Si vous avez un commerce à Madrid et peu d\'employés, la subvention est pour vous.', de: 'Egal, was Sie verkaufen. Wenn Sie ein Geschäft in Madrid und wenige Mitarbeiter haben, gehört die Förderung Ihnen.', zh: '无论您卖什么。如果您在马德里有生意而且员工不多，补贴就是您的。', ja: '何を販売しているかは問いません。マドリードで事業を営み、従業員が少なければ、補助金の対象です。' },
+      'shops.tag1': { es: '🍕 Restaurante', 'en-us': '🍕 Restaurant', 'en-gb': '🍕 Restaurant', fr: '🍕 Restaurant', de: '🍕 Restaurant', zh: '🍕 餐厅', ja: '🍕 レストラン' },
+      'shops.tag2': { es: '✂️ Peluquería', 'en-us': '✂️ Hair salon', 'en-gb': '✂️ Hair salon', fr: '✂️ Coiffeur', de: '✂️ Friseur', zh: '✂️ 理发店', ja: '✂️ 美容室' },
+      'shops.tag3': { es: '👕 Tienda de ropa', 'en-us': '👕 Clothing store', 'en-gb': '👕 Clothing store', fr: '👕 Magasin de vêtements', de: '👕 Bekleidungsgeschäft', zh: '👕 服装店', ja: '👕 衣料品店' },
+      'shops.tag4': { es: '🔧 Taller mecánico', 'en-us': '🔧 Mechanic workshop', 'en-gb': '🔧 Mechanic workshop', fr: '🔧 Garage mécanique', de: '🔧 Autowerkstatt', zh: '🔧 汽车修理厂', ja: '🔧 自動車修理工場' },
+      'shops.tag5': { es: '🏋️ Gimnasio', 'en-us': '🏋️ Gym', 'en-gb': '🏋️ Gym', fr: '🏋️ Salle de sport', de: '🏋️ Fitnessstudio', zh: '🏋️ 健身房', ja: '🏋️ ジム' },
+      'shops.tag6': { es: '🛒 Tienda de barrio', 'en-us': '🛒 Corner store', 'en-gb': '🛒 Corner shop', fr: '🛒 Épicerie de quartier', de: '🛒 Tante-Emma-Laden', zh: '🛒 社区小店', ja: '🛒 街角の店' },
+      'shops.tag7': { es: '🏥 Clínica dental', 'en-us': '🏥 Dental clinic', 'en-gb': '🏥 Dental clinic', fr: '🏥 Clinique dentaire', de: '🏥 Zahnklinik', zh: '🏥 牙科诊所', ja: '🏥 歯科医院' },
+      'shops.tag8': { es: '📚 Academia', 'en-us': '📚 Academy', 'en-gb': '📚 Academy', fr: '📚 Académie', de: '📚 Akademie', zh: '📚 培训机构', ja: '📚 学習塾' },
+      'shops.tag9': { es: '🍞 Panadería', 'en-us': '🍞 Bakery', 'en-gb': '🍞 Bakery', fr: '🍞 Boulangerie', de: '🍞 Bäckerei', zh: '🍞 面包店', ja: '🍞 パン屋' },
+      'shops.tag10': { es: '💐 Floristería', 'en-us': '💐 Florist', 'en-gb': '💐 Florist', fr: '💐 Fleuriste', de: '💐 Blumenladen', zh: '💐 花店', ja: '💐 花屋' },
+      'shops.tag11': { es: '🔨 Carpintería', 'en-us': '🔨 Carpentry', 'en-gb': '🔨 Carpentry', fr: '🔨 Menuiserie', de: '🔨 Schreinerei', zh: '🔨 木工店', ja: '🔨 木工所' },
+      'shops.tag12': { es: '🐾 Tienda de animales', 'en-us': '🐾 Pet store', 'en-gb': '🐾 Pet store', fr: '🐾 Animalerie', de: '🐾 Tierhandlung', zh: '🐾 宠物店', ja: '🐾 ペットショップ' },
+      'shops.tag13': { es: '📖 Librería', 'en-us': '📖 Bookstore', 'en-gb': '📖 Bookshop', fr: '📖 Librairie', de: '📖 Buchhandlung', zh: '📖 书店', ja: '📖 書店' },
+      'shops.tag14': { es: '☕ Cafetería', 'en-us': '☕ Coffee shop', 'en-gb': '☕ Coffee shop', fr: '☕ Café', de: '☕ Café', zh: '☕ 咖啡馆', ja: '☕ カフェ' },
+      'cta.title': { es: '¿Cuándo empiezas?', 'en-us': 'When do you start?', 'en-gb': 'When do you start?', fr: 'Quand commencez-vous?', de: 'Wann fangen Sie an?', zh: '您什么时候开始？', ja: 'いつ始めますか？' },
+      'cta.text': { es: 'Dinos qué negocio tienes y en qué zona de Madrid estás. Si cumples los requisitos, te hacemos la web sin que pagues nada.', 'en-us': 'Tell us what business you have and what area of Madrid you\'re in. If you meet the requirements, we\'ll build your website for free.', 'en-gb': 'Tell us what business you have and what area of Madrid you\'re in. If you meet the requirements, we\'ll build your website for free.', fr: 'Dites-nous quel commerce vous avez et dans quelle zone de Madrid vous êtes. Si vous remplissez les conditions, nous vous créons votre site gratuitement.', de: 'Sagen Sie uns, welches Geschäft Sie haben und in welcher Gegend von Madrid Sie sind. Wenn Sie die Voraussetzungen erfüllen, erstellen wir Ihre Website kostenlos.', zh: '告诉我们您有什么业务以及您在马德里的哪个区域。如果您符合条件，我们将免费为您建站。', ja: 'どのようなビジネスで、マドリードのどのエリアにお住まいかをお聞かせください。条件を満たせば、無料でウェブサイトを制作します。' },
+      'cta.placeholder_name': { es: 'Tu nombre y apellidos', 'en-us': 'Your full name', 'en-gb': 'Your full name', fr: 'Votre nom et prénom', de: 'Ihr vollständiger Name', zh: '您的姓名', ja: 'お名前' },
+      'cta.placeholder_email': { es: 'Tu correo electrónico', 'en-us': 'Your email address', 'en-gb': 'Your email address', fr: 'Votre adresse e-mail', de: 'Ihre E-Mail-Adresse', zh: '您的电子邮件', ja: 'メールアドレス' },
+      'cta.placeholder_business': { es: '¿Qué negocio tienes?', 'en-us': 'What business do you have?', 'en-gb': 'What business do you have?', fr: 'Quel commerce avez-vous?', de: 'Welches Geschäft haben Sie?', zh: '您有什么业务？', ja: 'どのようなビジネスですか？' },
+      'cta.placeholder_zone': { es: '¿En qué zona de Madrid?', 'en-us': 'What area of Madrid?', 'en-gb': 'What area of Madrid?', fr: 'Dans quelle zone de Madrid?', de: 'In welcher Gegend von Madrid?', zh: '在马德里的哪个区域？', ja: 'マドリードのどのエリアですか？' },
+      'cta.placeholder_service': { es: '¿Qué servicio te interesa?', 'en-us': 'What service interests you?', 'en-gb': 'What service interests you?', fr: 'Quel service vous intéresse?', de: 'Welche Dienstleistung interessiert Sie?', zh: '您对什么服务感兴趣？', ja: 'どのサービスにご興味がありますか？' },
+      'cta.option_web': { es: 'Web gratis (Kit Digital)', 'en-us': 'Free website (Kit Digital)', 'en-gb': 'Free website (Kit Digital)', fr: 'Site web gratuit (Kit Digital)', de: 'Kostenlose Website (Kit Digital)', zh: '免费网站（Kit Digital）', ja: '無料ウェブサイト（Kit Digital）' },
+      'cta.option_google': { es: 'Google Business (150€)', 'en-us': 'Google Business (150€)', 'en-gb': 'Google Business (150€)', fr: 'Google Business (150€)', de: 'Google Business (150€)', zh: 'Google Business (150€)', ja: 'Google Business（150€）' },
+      'cta.option_automation': { es: 'Automatizaciones (desde 300€)', 'en-us': 'Automations (from 300€)', 'en-gb': 'Automations (from 300€)', fr: 'Automatisations (à partir de 300€)', de: 'Automatisierungen (ab 300€)', zh: '自动化（从300€起）', ja: '自動化（300€から）' },
+      'cta.option_various': { es: 'Varios / No sé', 'en-us': 'Various / Not sure', 'en-gb': 'Various / Not sure', fr: 'Divers / Je ne sais pas', de: 'Sonstiges / Ich weiß nicht', zh: '其他 / 不确定', ja: 'その他 / わからない' },
+      'cta.button': { es: 'Sí, quiero empezar →', 'en-us': 'Yes, I want to start →', 'en-gb': 'Yes, I want to start →', fr: 'Oui, je veux commencer →', de: 'Ja, ich möchte starten →', zh: '是的，我想开始 →', ja: 'はい、始めたい →' },
+      'cta.privacy': { es: 'Sin spam. Solo te escribimos para ayudarte.', 'en-us': 'No spam. We only write to help you.', 'en-gb': 'No spam. We only write to help you.', fr: 'Pas de spam. Nous vous écrivons uniquement pour vous aider.', de: 'Kein Spam. Wir schreiben Ihnen nur, um Ihnen zu helfen.', zh: '没有垃圾邮件。我们只为您提供帮助。', ja: 'スパムは送信しません。サポート目的でのみご連絡します。' },
+      'floating.text': { es: 'Web gratis para tu negocio', 'en-us': 'Free website for your business', 'en-gb': 'Free website for your business', fr: 'Site web gratuit pour votre commerce', de: 'Kostenlose Website für Ihr Geschäft', zh: '为您的业务提供免费网站', ja: 'あなたのビジネスのための無料ウェブサイト' },
+      'floating.subtext': { es: 'Hasta 12.000€ de subvención del gobierno', 'en-us': 'Up to 12,000€ government grant', 'en-gb': 'Up to 12,000€ government grant', fr: 'Jusqu\'à 12.000€ de subvention gouvernementale', de: 'Bis zu 12.000€ staatliche Förderung', zh: '高达12,000€政府补贴', ja: '最大12,000€の政府補助金' },
+      'floating.cta': { es: 'Quiero la mía →', 'en-us': 'I want mine →', 'en-gb': 'I want mine →', fr: 'Je veux le mien →', de: 'Ich will meine →', zh: '我想要 →', ja: '申し込む →' },
+      'footer.text': { es: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital', 'en-us': 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% free thanks to Kit Digital', 'en-gb': 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% free thanks to Kit Digital', fr: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuit grâce au Kit Digital', de: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% kostenlos dank Kit Digital', zh: 'TuEscaparate &mdash; 马德里 &bull; 2026 &bull; 感谢Kit Digital，100%免费', ja: 'TuEscaparate &mdash; マドリード &bull; 2026 &bull; Kit Digitalにより100%無料' }
+    };
 
-  // ─── Form ───
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const btn = this.querySelector('button');
-      btn.textContent = 'Enviando…';
-      btn.disabled = true;
+      'page.title': { es: 'TuEscaparate · Tu tienda en Madrid, online gratis', 'en-us': 'TuEscaparate · Your store in Madrid, free online', 'en-gb': 'TuEscaparate · Your store in Madrid, free online', fr: 'TuEscaparate · Votre commerce à Madrid, en ligne gratuitement', de: 'TuEscaparate · Ihr Geschäft in Madrid, kostenlos online', zh: 'TuEscaparate · 您在马德里的商店，免费在线', ja: 'TuEscaparate · マドリードのあなたのお店、オンライン無料' },
+      'page.description': { es: 'Consigue una web profesional para tu negocio en Madrid sin pagar ni un euro. Kit Digital: hasta 12.000€ del gobierno para digitalizar tu comercio.', 'en-us': 'Get a professional website for your business in Madrid without paying a single euro. Kit Digital: up to 12,000€ from the government to digitize your business.', 'en-gb': 'Get a professional website for your business in Madrid without paying a single euro. Kit Digital: up to 12,000€ from the government to digitise your business.', fr: 'Obtenez un site web professionnel pour votre commerce à Madrid sans payer un euro. Kit Digital : jusqu\'à 12.000€ du gouvernement pour numériser votre commerce.', de: 'Holen Sie sich eine professionelle Website für Ihr Geschäft in Madrid, ohne einen Euro zu bezahlen. Kit Digital: bis zu 12.000€ vom Staat zur Digitalisierung Ihres Geschäfts.', zh: '为您在马德里的业务获得专业网站，无需支付一分钱。Kit Digital：政府提供高达12,000€用于数字化您的业务。', ja: 'マドリードのビジネス向けプロフェッショナルウェブサイトを1ユーロも支払わずに入手。Kit Digital：ビジネスのデジタル化に政府から最大12,000€。' },
+    const LANGUAGES = ['es', 'en-us', 'en-gb', 'fr', 'de', 'zh', 'ja'];
 
-      const data = new FormData(this);
-      const servicio = data.get('service') || 'no especificado';
-      data.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
-      data.append('subject', `Nuevo lead: ${servicio}`);
-      data.append('from_name', 'TuEscaparate');
+    const COUNTRY_MAP = {
+      ES: 'es', US: 'en-us', GB: 'en-gb', FR: 'fr', DE: 'de', CN: 'zh', JP: 'ja',
+      MX: 'es', AR: 'es', CO: 'es', CL: 'es', PE: 'es', UY: 'es', EC: 'es',
+      CA: 'en-us', AU: 'en-gb', NZ: 'en-gb', IE: 'en-gb',
+      CH: 'de', AT: 'de', BE: 'fr', PT: 'es', IT: 'es'
+    };
+
+    const LANG_MAP = { es: 'es', en: 'en-us', fr: 'fr', de: 'de', zh: 'zh', ja: 'ja' };
+
+    let currentLang = 'es';
+
+    async function detectLanguage() {
+      const saved = localStorage.getItem('lang');
+      if (saved && LANGUAGES.includes(saved)) return saved;
 
       try {
-        const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-        const json = await res.json();
-        if (json.success) {
-          window.location.href = '/success.html';
+        const res = await fetch('https://ipapi.co/json/');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.country_code && COUNTRY_MAP[data.country_code]) return COUNTRY_MAP[data.country_code];
+        }
+      } catch {}
+
+      try {
+        const navLang = navigator.language || navigator.userLanguage;
+        if (navLang) {
+          const full = navLang.toLowerCase();
+          if (full.includes('gb') || full.includes('uk')) return 'en-gb';
+          const code = full.split('-')[0];
+          if (LANG_MAP[code]) return LANG_MAP[code];
+        }
+      } catch {}
+
+      return 'es';
+    }
+
+    function applyTranslations(lang) {
+      currentLang = lang;
+      if (TRANSLATIONS['page.title']?.[lang]) document.title = TRANSLATIONS['page.title'][lang];
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && TRANSLATIONS['page.description']?.[lang]) metaDesc.setAttribute('content', TRANSLATIONS['page.description'][lang]);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        const texts = TRANSLATIONS[key];
+        if (!texts || !texts[lang]) return;
+        const text = texts[lang];
+
+        if (el.tagName === 'INPUT') {
+          el.placeholder = text;
+        } else if (el.tagName === 'OPTION') {
+          el.textContent = text;
+        } else if (el.hasAttribute('aria-label')) {
+          el.setAttribute('aria-label', text);
         } else {
+          el.innerHTML = text;
+        }
+      });
+      document.documentElement.lang = lang === 'en-gb' ? 'en-GB' : lang === 'en-us' ? 'en' : lang;
+    }
+
+    (async function init() {
+      const lang = await detectLanguage();
+      applyTranslations(lang);
+
+      const langToggle = document.getElementById('langToggle');
+      const langDropdown = document.getElementById('langDropdown');
+
+      langToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        langDropdown.classList.toggle('open');
+      });
+
+      document.addEventListener('click', function() {
+        langDropdown.classList.remove('open');
+      });
+
+      document.querySelectorAll('.lang-opt').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const l = this.dataset.lang;
+          localStorage.setItem('lang', l);
+          document.querySelectorAll('.lang-opt').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          applyTranslations(l);
+          langDropdown.classList.remove('open');
+        });
+      });
+
+      document.querySelectorAll('.lang-opt').forEach(b => {
+        if (b.dataset.lang === lang) b.classList.add('active');
+      });
+    })();
+
+    // ─── Dark Mode ───
+    (function() {
+      const toggle = document.getElementById('themeToggle');
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+      toggle.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      });
+    })();
+
+    // ─── Form ───
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button');
+        btn.textContent = 'Enviando…';
+        btn.disabled = true;
+
+        const data = new FormData(this);
+        const servicio = data.get('service') || 'no especificado';
+        data.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
+        data.append('subject', `Nuevo lead: ${servicio}`);
+        data.append('from_name', 'TuEscaparate');
+
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+          const json = await res.json();
+          if (json.success) {
+            window.location.href = '/success.html';
+          } else {
+            btn.textContent = 'Sí, quiero mi web gratis →';
+            btn.disabled = false;
+            alert('Hubo un error. Inténtalo de nuevo.');
+          }
+        } catch {
           btn.textContent = 'Sí, quiero mi web gratis →';
           btn.disabled = false;
           alert('Hubo un error. Inténtalo de nuevo.');
         }
-      } catch {
-        btn.textContent = 'Sí, quiero mi web gratis →';
-        btn.disabled = false;
-        alert('Hubo un error. Inténtalo de nuevo.');
-      }
-    });
-  }
+      });
+    }
+  })();
 </script>
 
 </body>
