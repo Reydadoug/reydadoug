@@ -1015,11 +1015,10 @@
       'floating.text': { es: 'Web gratis para tu negocio', 'en-us': 'Free website for your business', 'en-gb': 'Free website for your business', fr: 'Site web gratuit pour votre commerce', de: 'Kostenlose Website für Ihr Geschäft', zh: '为您的业务提供免费网站', ja: 'あなたのビジネスのための無料ウェブサイト' },
       'floating.subtext': { es: 'Hasta 12.000€ de subvención del gobierno', 'en-us': 'Up to 12,000€ government grant', 'en-gb': 'Up to 12,000€ government grant', fr: 'Jusqu\'à 12.000€ de subvention gouvernementale', de: 'Bis zu 12.000€ staatliche Förderung', zh: '高达12,000€政府补贴', ja: '最大12,000€の政府補助金' },
       'floating.cta': { es: 'Quiero la mía →', 'en-us': 'I want mine →', 'en-gb': 'I want mine →', fr: 'Je veux le mien →', de: 'Ich will meine →', zh: '我想要 →', ja: '申し込む →' },
-      'footer.text': { es: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital', 'en-us': 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% free thanks to Kit Digital', 'en-gb': 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% free thanks to Kit Digital', fr: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuit grâce au Kit Digital', de: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% kostenlos dank Kit Digital', zh: 'TuEscaparate &mdash; 马德里 &bull; 2026 &bull; 感谢Kit Digital，100%免费', ja: 'TuEscaparate &mdash; マドリード &bull; 2026 &bull; Kit Digitalにより100%無料' }
-    };
-
+      'footer.text': { es: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuito gracias al Kit Digital', 'en-us': 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% free thanks to Kit Digital', 'en-gb': 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% free thanks to Kit Digital', fr: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% gratuit grâce au Kit Digital', de: 'TuEscaparate &mdash; Madrid &bull; 2026 &bull; 100% kostenlos dank Kit Digital', zh: 'TuEscaparate &mdash; 马德里 &bull; 2026 &bull; 感谢Kit Digital，100%免费', ja: 'TuEscaparate &mdash; マドリード &bull; 2026 &bull; Kit Digitalにより100%無料' },
       'page.title': { es: 'TuEscaparate · Tu tienda en Madrid, online gratis', 'en-us': 'TuEscaparate · Your store in Madrid, free online', 'en-gb': 'TuEscaparate · Your store in Madrid, free online', fr: 'TuEscaparate · Votre commerce à Madrid, en ligne gratuitement', de: 'TuEscaparate · Ihr Geschäft in Madrid, kostenlos online', zh: 'TuEscaparate · 您在马德里的商店，免费在线', ja: 'TuEscaparate · マドリードのあなたのお店、オンライン無料' },
-      'page.description': { es: 'Consigue una web profesional para tu negocio en Madrid sin pagar ni un euro. Kit Digital: hasta 12.000€ del gobierno para digitalizar tu comercio.', 'en-us': 'Get a professional website for your business in Madrid without paying a single euro. Kit Digital: up to 12,000€ from the government to digitize your business.', 'en-gb': 'Get a professional website for your business in Madrid without paying a single euro. Kit Digital: up to 12,000€ from the government to digitise your business.', fr: 'Obtenez un site web professionnel pour votre commerce à Madrid sans payer un euro. Kit Digital : jusqu\'à 12.000€ du gouvernement pour numériser votre commerce.', de: 'Holen Sie sich eine professionelle Website für Ihr Geschäft in Madrid, ohne einen Euro zu bezahlen. Kit Digital: bis zu 12.000€ vom Staat zur Digitalisierung Ihres Geschäfts.', zh: '为您在马德里的业务获得专业网站，无需支付一分钱。Kit Digital：政府提供高达12,000€用于数字化您的业务。', ja: 'マドリードのビジネス向けプロフェッショナルウェブサイトを1ユーロも支払わずに入手。Kit Digital：ビジネスのデジタル化に政府から最大12,000€。' },
+      'page.description': { es: 'Consigue una web profesional para tu negocio en Madrid sin pagar ni un euro. Kit Digital: hasta 12.000€ del gobierno para digitalizar tu comercio.', 'en-us': 'Get a professional website for your business in Madrid without paying a single euro. Kit Digital: up to 12,000€ from the government to digitize your business.', 'en-gb': 'Get a professional website for your business in Madrid without paying a single euro. Kit Digital: up to 12,000€ from the government to digitise your business.', fr: 'Obtenez un site web professionnel pour votre commerce à Madrid sans payer un euro. Kit Digital : jusqu\'à 12.000€ du gouvernement pour numériser votre commerce.', de: 'Holen Sie sich eine professionelle Website für Ihr Geschäft in Madrid, ohne einen Euro zu bezahlen. Kit Digital: bis zu 12.000€ vom Staat zur Digitalisierung Ihres Geschäfts.', zh: '为您在马德里的业务获得专业网站，无需支付一分钱。Kit Digital：政府提供高达12,000€用于数字化您的业务。', ja: 'マドリードのビジネス向けプロフェッショナルウェブサイトを1ユーロも支払わずに入手。Kit Digital：ビジネスのデジタル化に政府から最大12,000€。' }
+    };,
     const LANGUAGES = ['es', 'en-us', 'en-gb', 'fr', 'de', 'zh', 'ja'];
 
     const COUNTRY_MAP = {
@@ -1075,8 +1074,10 @@
           el.textContent = text;
         } else if (el.hasAttribute('aria-label')) {
           el.setAttribute('aria-label', text);
-        } else {
+        } else if (key === 'footer.text' || key === 'hero.title' || key === 'hero.subtitle') {
           el.innerHTML = text;
+        } else {
+          el.textContent = text;
         }
       });
       document.documentElement.lang = lang === 'en-gb' ? 'en-GB' : lang === 'en-us' ? 'en' : lang;
