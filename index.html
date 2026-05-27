@@ -1140,16 +1140,16 @@
         btn.disabled = true;
 
         const data = new FormData(this);
-        const servicio = data.get('service') || 'no especificado';
-        data.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
-        data.append('subject', `Nuevo lead: ${servicio}`);
-        data.append('from_name', 'TuEscaparate');
+          const servicio = data.get('service') || 'varios';
+          data.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
+          data.append('subject', `Nuevo lead: ${servicio}`);
+          data.append('from_name', 'TuEscaparate');
 
-        try {
-          const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-          const json = await res.json();
-          if (json.success) {
-            window.location.href = '/success.html';
+          try {
+            const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+            const json = await res.json();
+            if (json.success) {
+              window.location.href = '/success.html?s=' + encodeURIComponent(servicio);
           } else {
             btn.textContent = 'Sí, quiero mi web gratis →';
             btn.disabled = false;
