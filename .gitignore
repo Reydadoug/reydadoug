@@ -6,3 +6,6 @@ pitch.md
 
 # Sistema
 .DS_Store
+
+# Local Netlify folder
+.netlify

@@ -352,6 +352,7 @@
   <div class="container">
     <a href="#" class="logo">TuEscaparate</a>
     <div>
+      <a href="#servicios">Servicios</a>
       <a href="#como">Cómo funciona</a>
       <a href="#kit">Kit Digital</a>
       <a href="#contacto">Contacto</a>
@@ -368,15 +369,15 @@
           <span class="dot"></span>
           Fondos Next Generation UE — Plazos abiertos
         </div>
-        <h1>Tu negocio en Madrid,<br><span class="highlight">online sin pagar nada.</span></h1>
+        <h1>Tu negocio en Madrid,<br><span class="highlight">al día sin pagar nada.</span></h1>
         <p>
           El gobierno te da hasta 12.000€ para digitalizar tu comercio. 
-          Nosotros te construimos la web y gestionamos todo el papeleo. 
-          <strong>Sin coste para ti.</strong>
+          Te hacemos la web, optimizamos tu Google Business y automatizamos
+          tus tareas diarias. <strong>Todo sin coste o desde 150€.</strong>
         </p>
         <div class="hero-actions">
-          <a href="#contacto" class="btn btn-primary">Quiero mi web gratis →</a>
-          <a href="#como" class="btn btn-secondary">Ver cómo funciona</a>
+          <a href="#contacto" class="btn btn-primary">Empieza gratis →</a>
+          <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
         </div>
         <div class="hero-stats-row">
           <div>
@@ -509,44 +510,32 @@
   </div>
 </section>
 
-<!-- ============ SOLUTION ============ -->
-<section>
+<!-- ============ 3 SERVICES ============ -->
+<section id="servicios">
   <div class="container">
-    <div class="label">Todo incluido</div>
-    <h2 class="section-title">Esto es lo que te llevas</h2>
+    <div class="label">Tres servicios</div>
+    <h2 class="section-title">De la web a la automatización</h2>
     <p class="section-sub">
-      Sin letra pequeña. Todo lo que necesitas para tener presencia online profesional.
+      No solo te hacemos la web. Te ponemos todo el negocio al día.
     </p>
     <div class="solution-grid">
-      <div class="sol-card">
+      <div class="sol-card" style="border-color:#e8593b;border-width:2px;">
         <div class="icon">🌐</div>
-        <h3>Web profesional</h3>
-        <p>Moderna, rápida y adaptada a móviles. Plantillas para cada tipo de negocio.</p>
+        <h3 style="color:#e8593b;">Web gratis</h3>
+        <p>Web profesional con Kit Digital. Sin coste para ti. SEO local, Google Maps, Analytics. Lista en 7 días.</p>
+        <div style="margin-top:12px;font-size:12px;color:#e8593b;font-weight:600;">GRATIS →</div>
       </div>
       <div class="sol-card">
         <div class="icon">📍</div>
-        <h3>Google Maps</h3>
-        <p>Te damos de alta y optimizamos tu perfil para que te encuentren en tu barrio.</p>
+        <h3>Google Business</h3>
+        <p>Optimizamos tu perfil de Google: fotos, horarios, reseñas, publicaciones. Apareces en Maps y búsqueda local.</p>
+        <div style="margin-top:12px;font-size:12px;color:#666;font-weight:600;">Desde 150€</div>
       </div>
       <div class="sol-card">
-        <div class="icon">🔎</div>
-        <h3>SEO local</h3>
-        <p>Apareces cuando alguien busca "cafetería cerca de mí" o "taller en Madrid".</p>
-      </div>
-      <div class="sol-card">
-        <div class="icon">📊</div>
-        <h3>Analytics</h3>
-        <p>Ves cuánta gente visita tu web y de dónde vienen. Sabes si funciona.</p>
-      </div>
-      <div class="sol-card">
-        <div class="icon">✏️</div>
-        <h3>Fácil de gestionar</h3>
-        <p>Cambias textos, fotos y precios tú mismo. Sin saber de tecnología.</p>
-      </div>
-      <div class="sol-card">
-        <div class="icon">⚡</div>
-        <h3>Hosting + SSL</h3>
-        <p>Rápido, seguro y con certificado SSL. Tus clientes confían al ver el candado.</p>
+        <div class="icon">⚙️</div>
+        <h3>Automatizaciones</h3>
+        <p>Scripts a medida para tu negocio: facturación automática, recordatorios a clientes, control de stock básico.</p>
+        <div style="margin-top:12px;font-size:12px;color:#666;font-weight:600;">Desde 300€</div>
       </div>
     </div>
   </div>
@@ -696,7 +685,7 @@
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
         const json = await res.json();
         if (json.success) {
-          window.location.href = '/reydadoug/success.html';
+          window.location.href = '/success.html';
         } else {
           btn.textContent = 'Sí, quiero mi web gratis →';
           btn.disabled = false;
