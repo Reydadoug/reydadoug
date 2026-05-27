@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web gratis · TuEscaparate</title>
+  <meta name="description" content="Consigue una web profesional para tu negocio gratis con el Kit Digital." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff; --bg-alt: #faf8fc; --text: #1a1a2e;
+      --text-secondary: #555; --text-muted: #777; --text-light: #999;
+      --card-border: #eee; --nav-bg: rgba(255,255,255,0.9);
+      --nav-border: rgba(0,0,0,0.06); --primary: #e8593b;
+      --primary-hover: #d44a2e; --shadow: rgba(232,89,59,0.35);
+      --toggle-bg: rgba(0,0,0,0.04); --toggle-border: rgba(0,0,0,0.08);
+      --toggle-hover: rgba(0,0,0,0.08);
+      --input-bg: rgba(0,0,0,0.35); --input-border: rgba(255,255,255,0.15);
+      --input-placeholder: #9a8aaa; --select-bg: rgba(0,0,0,0.35);
+      --select-text: #fff; --select-option-bg: #2d1f3d;
+    }
+    [data-theme="dark"] {
+      --bg: #181b2a; --bg-alt: #1f2235; --text: #e0e0e8;
+      --text-secondary: #b0a8c0; --text-muted: #8a7a9a; --text-light: #6a6a7a;
+      --card-border: #2f3448; --nav-bg: rgba(24,27,42,0.92);
+      --nav-border: rgba(255,255,255,0.06); --shadow: rgba(232,89,59,0.25);
+      --toggle-bg: rgba(255,255,255,0.05); --toggle-border: rgba(255,255,255,0.08);
+      --toggle-hover: rgba(255,255,255,0.1);
+      --input-bg: rgba(0,0,0,0.5); --input-border: rgba(255,255,255,0.1);
+      --input-placeholder: #6a5a7a; --select-bg: rgba(0,0,0,0.5);
+      --select-text: #e0e0e8; --select-option-bg: #181b2a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif; color: var(--text); background: var(--bg);
+      line-height: 1.6; transition: background 0.3s, color 0.3s;
+    }
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--nav-bg); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--nav-border); padding: 16px 0;
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; }
+    .logo { font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none; }
+    nav .right { display: flex; align-items: center; gap: 12px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; }
+    nav a:hover { color: var(--primary); }
+    .theme-toggle {
+      background: var(--toggle-bg); border: 1px solid var(--toggle-border);
+      border-radius: 50%; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 18px; transition: all 0.2s;
+      padding: 0; line-height: 1;
+    }
+    .theme-toggle:hover { background: var(--toggle-hover); border-color: var(--primary); }
+    .header {
+      padding: 120px 0 60px;
+      background: linear-gradient(165deg, #1a1a2e 0%, #2d1f3d 40%, #1a1a2e 100%);
+      color: #fff; text-align: center;
+    }
+    .header h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .header h1 .highlight {
+      background: linear-gradient(135deg, #fbbf7c, #e8593b);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header p { font-size: 18px; color: #b8b0c8; max-width: 600px; margin: 0 auto 32px; }
+    .header .price {
+      display: inline-block; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12); padding: 10px 28px;
+      border-radius: 30px; font-size: 16px; font-weight: 600;
+    }
+    .header .price span { color: #fbbf7c; }
+    section { padding: 70px 0; }
+    section:nth-child(even) { background: var(--bg-alt); }
+    h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+    h3 { font-size: 20px; font-weight: 600; margin: 32px 0 12px; }
+    p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+    ul { list-style: none; margin-bottom: 24px; }
+    ul li {
+      padding: 10px 0; font-size: 15px; color: var(--text-secondary);
+      display: flex; align-items: center; gap: 12px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    ul li::before { content: '✓'; color: #27ae60; font-weight: 700; font-size: 18px; }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px; margin: 32px 0;
+    }
+    .feature-card {
+      background: var(--bg); border-radius: 14px; padding: 24px;
+      border: 1px solid var(--card-border); text-align: center;
+    }
+    .feature-card .icon { font-size: 36px; margin-bottom: 12px; }
+    .feature-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+    .feature-card p { font-size: 13px; color: var(--text-muted); margin: 0; }
+    .cta-box {
+      background: linear-gradient(135deg, #1a1a2e, #2d1f3d);
+      border-radius: 20px; padding: 48px 40px; text-align: center; color: #fff;
+    }
+    .cta-box h3 { font-size: 24px; font-weight: 700; margin: 0 0 12px; color: #fff; }
+    .cta-box p { color: #b8b0c8; max-width: 480px; margin: 0 auto 24px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 600; font-size: 16px; padding: 14px 28px;
+      border-radius: 10px; text-decoration: none; transition: all 0.2s;
+      background: var(--primary); color: #fff;
+      box-shadow: 0 4px 20px var(--shadow); border: none; cursor: pointer;
+    }
+    .btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+    .cta-form { max-width: 440px; margin: 24px auto 0; }
+    .cta-form input, .cta-form select {
+      width: 100%; padding: 14px 18px; border-radius: 10px;
+      border: 1px solid var(--input-border); margin-bottom: 10px;
+      font-size: 15px; font-family: inherit;
+      background: var(--input-bg); color: var(--select-text);
+      outline: none; transition: border-color 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .cta-form select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 16px center;
+      padding-right: 44px;
+    }
+    .cta-form select option { background: var(--select-option-bg); color: var(--select-text); }
+    .cta-form input:focus, .cta-form select:focus { border-color: var(--primary); }
+    .cta-form input::placeholder { color: var(--input-placeholder); }
+    footer { padding: 32px 0; text-align: center; font-size: 13px; color: var(--text-light); }
+    @media (max-width: 600px) {
+      .header h1 { font-size: 32px; }
+      h2 { font-size: 24px; }
+      nav a:not(.back):not(.theme-toggle) { display: none; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo">← TuEscaparate</a>
+    <div class="right">
+      <a href="index.html">Inicio</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="header">
+  <div class="container">
+    <h1>Web profesional para tu negocio<br><span class="highlight">completamente gratis</span></h1>
+    <p>El Kit Digital del Gobierno de España cubre hasta 12.000€. Nosotros gestionamos la subvención y te construimos una web de calidad profesional. Tú no pagas nada.</p>
+    <div class="price"><span>GRATIS</span> — Subvencionado al 100%</div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <h2>¿Qué incluye tu web?</h2>
+    <p>No hacemos plantillas genéricas. Cada web la construimos desde cero para tu tipo de negocio, optimizada para lo que necesitas.</p>
+    <div class="feature-grid">
+      <div class="feature-card"><div class="icon">🎨</div><h4>Diseño único</h4><p>Nada de plantillas. Colores, tipografía y estructura pensados para tu negocio.</p></div>
+      <div class="feature-card"><div class="icon">📱</div><h4>Adaptada a móviles</h4><p>Se ve perfecta en teléfonos, tablets y ordenadores. El 70% de tus clientes te buscará desde el móvil.</p></div>
+      <div class="feature-card"><div class="icon">⚡</div><h4>Rápida</h4><p>Carga en menos de 2 segundos. Si tarda más, pierdes clientes.</p></div>
+      <div class="feature-card"><div class="icon">🔍</div><h4>SEO local</h4><p>Apareces en Google cuando alguien busca tu negocio en tu barrio. Maps y reseñas incluidos.</p></div>
+      <div class="feature-card"><div class="icon">📊</div><h4>Analytics</h4><p>Ves cuánta gente visita tu web, de dónde vienen y qué hacen.</p></div>
+      <div class="feature-card"><div class="icon">🔒</div><h4>SSL + Hosting</h4><p>Certificado de seguridad incluido. Tus clientes confían al ver el candado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Cómo lo hacemos</h2>
+    <h3>1. Analizamos tu negocio</h3>
+    <p>Te preguntamos qué haces, a quién vendes, qué necesitas. No hacemos lo mismo para todos.</p>
+    <h3>2. Diseñamos y construimos</h3>
+    <p>Te enseñamos un borrador. Lo ajustamos hasta que te guste. Luego lo programamos a mano, sin constructores de arrastrar y soltar que dejan código basura.</p>
+    <h3>3. Publicamos y optimizamos</h3>
+    <p>La subimos a producción con hosting rápido, SSL, SEO y Google Maps.</p>
+    <h3>4. Te formamos</h3>
+    <p>Te mostramos cómo cambiar textos, fotos y precios tú mismo. Sin depender de nadie.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Qué nos diferencia</h2>
+    <ul>
+      <li>Código limpio, no plantillas de Wix o Fiverr que nadie encuentra en Google</li>
+      <li>SEO real desde el día 1, no promesas vacías</li>
+      <li>Te formamos para que no dependas de nosotros</li>
+      <li>Soporte si algo falla</li>
+      <li>Es gratis. El gobierno lo paga</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta-box">
+      <h3>¿Tu negocio cumple los requisitos?</h3>
+      <p>Dinos qué tienes y te decimos si puedes optar a la subvención.</p>
+      <form class="cta-form" id="contactForm">
+        <input type="text" name="name" placeholder="Tu nombre" required />
+        <input type="email" name="email" placeholder="Tu correo electrónico" required />
+        <input type="text" name="business" placeholder="¿Qué negocio tienes?" required />
+        <select name="service" style="display:none;"><option value="web" selected></option></select>
+        <button type="submit" class="btn">Quiero mi web gratis →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container">TuEscaparate — Madrid — 2026</div></footer>
+
+<script>
+  (function() {
+    const t = document.getElementById('themeToggle'), i = document.getElementById('themeIcon');
+    const s = localStorage.getItem('theme');
+    if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      i.textContent = '☀️';
+    }
+    t.addEventListener('click', () => {
+      const d = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (d) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); i.textContent = '🌙'; }
+      else { document.documentElement.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); i.textContent = '☀️'; }
+    });
+  })();
+  document.getElementById('contactForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault(); const btn = this.querySelector('button');
+    btn.textContent = 'Enviando…'; btn.disabled = true;
+    const d = new FormData(this);
+    d.append('access_key', 'ac694a20-aeb6-4a52-af9f-68bed99aaa3e');
+    d.append('subject', 'Nuevo lead: web gratis');
+    d.append('from_name', 'TuEscaparate');
+    try {
+      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: d });
+      const j = await r.json();
+      if (j.success) window.location.href = '/success.html';
+      else { btn.textContent = 'Quiero mi web gratis →'; btn.disabled = false; alert('Error. Inténtalo de nuevo.'); }
+    } catch { btn.textContent = 'Quiero mi web gratis →'; btn.disabled = false; alert('Error. Inténtalo de nuevo.'); }
+  });
+</script>
+</body>
+</html>
