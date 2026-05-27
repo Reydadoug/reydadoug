@@ -20,9 +20,9 @@
       --card-border-hover: #ddd;
       --nav-bg: rgba(255,255,255,0.9);
       --nav-border: rgba(0,0,0,0.06);
-      --hero-bg: linear-gradient(165deg, #1a1a2e 0%, #2d1f3d 40%, #1a1a2e 100%);
-      --hero-text: #b8b0c8;
-      --hero-stat: #7a708a;
+      --hero-bg: linear-gradient(165deg, #2a1f3e 0%, #3d2a4d 40%, #2a1f3e 100%);
+      --hero-text: #c8b8d8;
+      --hero-stat: #8a7a9a;
       --primary: #e8593b;
       --primary-hover: #d44a2e;
       --accent: #fbbf7c;
@@ -41,21 +41,24 @@
       --shop-hover-bg: #fef5f2;
       --step-bg: #fff;
       --step-border: #eee;
-      --input-bg: rgba(0,0,0,0.35);
-      --input-border: rgba(255,255,255,0.15);
-      --input-placeholder: #9a8aaa;
-      --select-bg: rgba(0,0,0,0.35);
-      --select-text: #fff;
-      --select-option-bg: #2d1f3d;
-      --toggle-bg: rgba(255,255,255,0.08);
-      --toggle-border: rgba(255,255,255,0.15);
-      --toggle-hover: rgba(255,255,255,0.2);
-      --kit-bg: linear-gradient(135deg, #1a1a2e, #2d1f3d);
-      --kit-text: #b8b0c8;
-      --kit-badge-text: #c8c0d8;
+      --input-bg: rgba(255,255,255,0.9);
+      --input-border: rgba(0,0,0,0.12);
+      --input-placeholder: #7a6a8a;
+      --select-bg: rgba(255,255,255,0.9);
+      --select-text: #1a1a2e;
+      --select-option-bg: #fff;
+      --toggle-bg: rgba(0,0,0,0.04);
+      --toggle-border: rgba(0,0,0,0.08);
+      --toggle-hover: rgba(0,0,0,0.08);
+      --kit-bg: linear-gradient(135deg, #2a1f3e, #3d2a4d);
+      --kit-text: #c8b8d8;
+      --kit-badge-text: #d8c8e8;
       --kit-badge-bg: rgba(255,255,255,0.08);
       --kit-badge-border: rgba(255,255,255,0.1);
-      --kit-label: #8a7a9a;
+      --kit-label: #9a8aaa;
+      --cta-bg: #faf8fc;
+      --cta-text: #1a1a2e;
+      --cta-text-secondary: #6a5a7a;
     }
 
     [data-theme="dark"] {
@@ -94,6 +97,9 @@
       --toggle-bg: rgba(255,255,255,0.05);
       --toggle-border: rgba(255,255,255,0.08);
       --toggle-hover: rgba(255,255,255,0.1);
+      --cta-bg: linear-gradient(165deg, #0f1120 0%, #181b2a 40%, #0f1120 100%);
+      --cta-text: #fff;
+      --cta-text-secondary: #b0a8c0;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -150,6 +156,7 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes scaleIn { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
     @keyframes slideLeft { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes dropDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
 
     body { animation: fadeIn 0.4s ease; }
     .hero-content { animation: fadeUp 0.7s ease both; }
@@ -167,11 +174,25 @@
     .sol-card { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s, border-color 0.3s, background 0.3s; }
     .sol-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 12px 40px rgba(232,89,59,0.15); }
 
-    .feature-card { transition: transform 0.3s ease, box-shadow 0.3s, border-color 0.3s, background 0.3s; }
-    .feature-card:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+    .pain-card { transition: transform 0.3s ease, box-shadow 0.3s, border-color 0.3s; }
+    .pain-card:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 28px rgba(0,0,0,0.06); }
 
-    .step { transition: transform 0.3s ease, box-shadow 0.3s; }
-    .step:hover { transform: translateY(-4px); }
+    .comp-card { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s; }
+    .comp-card.bad:hover { transform: scale(0.95); box-shadow: none; }
+    .comp-card.good:hover { transform: scale(1.04); box-shadow: 0 12px 40px rgba(39,174,96,0.15); }
+
+    .step { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s; }
+    .step:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 12px 36px rgba(0,0,0,0.06); }
+
+    .shop-tag { transition: transform 0.25s ease, border-color 0.2s, background 0.2s; }
+    .shop-tag:hover { transform: translateY(-3px) scale(1.05); border-color: var(--primary); background: var(--shop-hover-bg); }
+
+    .kit-amount .num {
+      animation: dropDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s both;
+    }
+    .kit-amount .label {
+      animation: fadeUp 0.5s ease 0.7s both;
+    }
 
     .btn-primary, .btn, .btn-secondary, a[href*="web"], a[href*="contacto"] {
       transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -188,6 +209,7 @@
       background: var(--hero-bg);
       color: #fff;
       position: relative; overflow: hidden;
+      transition: background 0.3s;
     }
     .hero::before {
       content: ''; position: absolute;
@@ -237,10 +259,10 @@
     }
     .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
     .btn-secondary {
-      background: var(--toggle-bg); color: #c8c0d8;
+      background: var(--toggle-bg); color: var(--hero-text);
       border: 1px solid var(--toggle-border);
     }
-    .btn-secondary:hover { border-color: rgba(255,255,255,0.3); color: #fff; }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
     .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; }
     .phone-mock {
@@ -265,7 +287,7 @@
     .phone-mock .screen .row .half { flex: 1; height: 50px; background: var(--bg-alt); border-radius: 8px; }
     .hero-stats-row {
       display: flex; gap: 40px; margin-top: 48px;
-      padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 32px; border-top: 1px solid var(--nav-border);
     }
     .hero-stats-row strong {
       display: block; font-size: 24px; font-weight: 700;
@@ -312,9 +334,7 @@
     .pain-card {
       background: var(--card-bg); border-radius: 14px; padding: 28px;
       border: 1px solid var(--card-border); position: relative;
-      transition: all 0.2s;
     }
-    .pain-card:hover { border-color: var(--card-border-hover); transform: translateY(-2px); }
     .pain-card .icon { font-size: 32px; margin-bottom: 14px; }
     .pain-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
     .pain-card p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
@@ -348,10 +368,9 @@
     .sol-card {
       background: var(--card-bg); border-radius: 14px; padding: 28px 20px;
       text-align: center; border: 2px solid var(--card-border);
-      transition: all 0.25s; cursor: pointer; display: block;
+      cursor: pointer; display: block;
       text-decoration: none; color: inherit;
     }
-    .sol-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(232,89,59,0.1); }
     .sol-card .icon { font-size: 34px; margin-bottom: 14px; }
     .sol-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
     .sol-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
@@ -423,18 +442,17 @@
       padding: 10px 22px; border-radius: 30px;
       font-size: 15px; font-weight: 500;
       display: flex; align-items: center; gap: 8px;
-      transition: all 0.2s;
     }
-    .shop-tag:hover { border-color: var(--primary); background: var(--shop-hover-bg); }
 
     /* ============ CTA ============ */
     .cta-section {
       text-align: center; padding: 100px 0;
-      background: var(--hero-bg);
-      color: #fff;
+      background: var(--cta-bg);
+      color: var(--cta-text);
+      transition: background 0.3s, color 0.3s;
     }
     .cta-section h2 { font-size: 40px; font-weight: 800; margin-bottom: 14px; letter-spacing: -0.3px; }
-    .cta-section p { color: var(--hero-text); max-width: 480px; margin: 0 auto 32px; }
+    .cta-section p { color: var(--cta-text-secondary); max-width: 480px; margin: 0 auto 32px; }
     .cta-section form { max-width: 440px; margin: 0 auto; }
     .cta-section input, .cta-section select {
       width: 100%; padding: 16px 20px; border-radius: 10px;
@@ -445,7 +463,7 @@
       -webkit-appearance: none; appearance: none;
     }
     .cta-section select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 16px center;
       padding-right: 44px;
     }
