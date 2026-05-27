@@ -122,7 +122,11 @@
       transition: background 0.3s, border-color 0.3s;
     }
     nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none; }
+    .logo {
+      font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo img { height: 28px; width: auto; display: block; }
     .logo span { color: var(--primary); }
     .nav-links { display: flex; align-items: center; gap: 6px; }
     .nav-links a {
@@ -549,7 +553,7 @@
 <!-- ============ NAV ============ -->
 <nav>
   <div class="container">
-    <a href="#" class="logo">TuEscaparate</a>
+    <a href="#" class="logo"><img src="logo.png" alt="TuEscaparate">TuEscaparate</a>
     <div class="nav-links">
       <a href="#servicios" data-i18n="nav.services">Servicios</a>
       <a href="#como" data-i18n="nav.how">Cómo funciona</a>

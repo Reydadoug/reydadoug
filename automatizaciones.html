@@ -44,7 +44,8 @@
       border-bottom: 1px solid var(--nav-border); padding: 16px 0;
     }
     nav .container { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; }
-    .logo { font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none; }
+    .logo { font-weight: 800; font-size: 20px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo img { height: 28px; width: auto; display: block; }
     nav .right { display: flex; align-items: center; gap: 12px; }
     nav a { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; }
     nav a:hover { color: var(--primary); }
@@ -171,7 +172,7 @@
 <body>
 <nav>
   <div class="container">
-    <a href="index.html" class="logo">← TuEscaparate</a>
+    <a href="index.html" class="logo"><img src="logo.png" alt="TuEscaparate">TuEscaparate</a>
     <div class="right">
       <a href="index.html">Inicio</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo oscuro">
